@@ -182,6 +182,7 @@ export default {
 html, body {
   height: 100%;
   margin: 0;
+  font-size: 16px;
   box-sizing: border-box;
 }
 

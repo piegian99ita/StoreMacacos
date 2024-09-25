@@ -79,7 +79,7 @@ export default {
 <style scoped>
 .app {
   font-family: Arial, sans-serif;
-  
+  font-size: 16px;
  
   height: 100vh;
   width: 100vw;

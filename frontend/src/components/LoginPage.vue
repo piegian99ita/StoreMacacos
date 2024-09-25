@@ -1,5 +1,5 @@
 <template>
-  
+  <div class="app">
   <div class="container">
     <h1 class="title">MACACOS STORE</h1>
     <div class="form-container">
@@ -20,7 +20,7 @@
     </div>
     
   </div>
- 
+</div>
 </template>
 
 
@@ -78,13 +78,25 @@ export default {
 }
 
 
+
 html, body {
   height: 100%;
   width: 100%;
   margin:0;
+  font-size: 16px;
   overflow:hidden;
   font-family: 'Georgia', serif;
 }
+.app {
+  font-family: Arial, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
 
 .container {
   background-image: url('../assets/logo-macacos.jpg'); /* Percorso dell'immagine */

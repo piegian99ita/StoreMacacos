@@ -1,5 +1,5 @@
 <template>
-  <div class="app2">
+  <div class="app">
     <!-- Navigation Bar -->
     <nav class="navbar">
       <router-link to="/home" class="nav-item1">
@@ -100,6 +100,7 @@ export default {
 html, body {
   height: 100%;
   margin: 0;
+  font-size: 16px;
   box-sizing: border-box;
 }
 
