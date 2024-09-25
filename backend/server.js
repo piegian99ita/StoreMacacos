@@ -1,5 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const app = require('./app');
+const express = require('express');
 const path = require('path');
 const port =  3050;
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
