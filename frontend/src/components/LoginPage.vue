@@ -181,6 +181,16 @@ html, body {
 .submit-button:hover {
   background-color: #5a0c9e; /* Colore viola più scuro */
 }
-</style>
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
 
+  .form input,
+  button {
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+</style>
 
