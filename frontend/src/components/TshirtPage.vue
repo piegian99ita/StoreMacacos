@@ -68,7 +68,7 @@ export default {
         const username = localStorage.getItem('username'); 
         const encodedUsername = encodeURIComponent(username);
         console.log(username);
-        const response = await fetch('http://localhost:3050/api/ordine/'+encodedUsername+'/tshirt', {
+        const response = await fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/tshirt', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ export default {
 
         // After successful submission, navigate to the second page
         
-        alert("T-SHIRT AGGIUNTA ALLA LISTA DEGLI ORDINI\n COLORE: "+colore+"\nTAGLIA: "+taglia)
+        alert("T-SHIRT AGGIUNTA ALLA LISTA DEGLI ORDINI\nCOLORE: "+colore+"\nTAGLIA: "+taglia)
         
       } catch (error) {
         console.error(error)
