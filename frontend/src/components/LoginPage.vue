@@ -1,25 +1,28 @@
 <template>
   <div class="app">
-  <div class="container">
-    <h1 class="title">MACACOS STORE</h1>
-    <div class="form-container">
-      <h2 class="form-title">INSERIRE NOME, COGNOME ED E-MAIL:</h2>
-      <form @submit.prevent="handleSubmit">
-        <div class="input-group">
-          <label for="nome" class="input-label">Nome:</label>
-          <input type="text" v-model="nome" id="nome" class="input-box" placeholder="Nome">
-          <label for="cognome" class="input-label">Cognome:</label>
-          <input type="text" v-model="cognome" id="cognome" class="input-box" placeholder="Cognome">
-        </div>
-        <div class="email-group">
-          <label for="email" class="email-label">E-mail:</label>
-          <input type="text" v-model="email" id="email" class="input-box" placeholder="e-mail">
-        </div>
-        <button type="submit" class="submit-button">ENTRA</button>
-      </form>
+    <div class="container">
+      <h1 class="title">MACACOS STORE</h1>
+      <div class="form-container">
+        <h2 class="form-title">INSERIRE NOME, COGNOME ED E-MAIL:</h2>
+        <form @submit.prevent="handleSubmit">
+          <div class="input-group">
+            <label for="nome" class="input-label">Nome:</label>
+            <input type="text" v-model="nome" id="nome" class="input-box" placeholder="Nome">
+            <label for="cognome" class="input-label">Cognome:</label>
+            <input type="text" v-model="cognome" id="cognome" class="input-box" placeholder="Cognome">
+          </div>
+          <div class="email-group">
+            <label for="email" class="email-label">E-mail:</label>
+            <input type="text" v-model="email" id="email" class="input-box" placeholder="e-mail">
+          </div>
+          <button type="submit" class="submit-button">ENTRA</button>
+        </form>
+      </div>
+      
     </div>
-    
-  </div>
+    <div class="macaco">
+      <img src='../assets/logo-macacos.jpg' alt="Logo" class="logo">
+    </div>
 </div>
 </template>
 
@@ -69,21 +72,15 @@ export default {
 
 <style scoped>
 /* Global Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-   overflow-x: hidden; /* Nasconde l'overflow orizzontale */
-  overflow-y: hidden; 
-}
+
 
 
 
 html, body {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   margin:0;
-  font-size: 16px;
+  font-size: 2wv;
   overflow:hidden;
   font-family: 'Georgia', serif;
 }
@@ -91,19 +88,29 @@ html, body {
   font-family: Arial, sans-serif;
   width: 100vw;
   height: 100vh;
-  margin: 0;
-  box-sizing: border-box;
+  
+  
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  
 }
 
+.macaco{
+  flex: 1;
+  background-color: #000000;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.logo{
+  object-fit: contain; /* Adatta l'immagine per coprire l'intero elemento */
+  object-position: center; /* Centra l'immagine */
+  width: 100%;
+  height: 100%;
 
+}
 .container {
-  background-image: url('../assets/logo-macacos.jpg'); /* Percorso dell'immagine */
-  background-size: contain; /* Adatta l'immagine per coprire l'intero elemento */
-  background-position: right; /* Centra l'immagine */
-  background-repeat: no-repeat; /* Impedisce la ripetizione dell'immagine */
-
+  flex:1;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -111,85 +118,88 @@ html, body {
   height: 100vh;
   width:100vw;
   overflow:hidden;
+  background: linear-gradient(to right, #430955, #000000);
 }
 
 .title {
-  font-size: 6.5rem;
+  font-size: 5vw;
   font-weight: 500;
   font-family: 'Georgia', serif;
-  color: fuchsia; /* Colore viola */
-  margin-bottom: 8rem;
-  margin-left:2rem;
-  text-shadow: 1px 1px 2px red, 0 0 0.5rem white, 0 0 0.2em blue;
+  color: rgb(255, 7, 143); /* Colore viola */
+  margin-bottom: 8vh;
+  margin-left:2vw;
+  text-shadow: 1vw 1vw 2vw rgb(7, 0, 10), 0 0 0.5vw rgb(0, 0, 0), 0 0 0.2vw rgb(0, 0, 0);
 }
 
 .email-group{
-  margin-bottom: 7rem;
+  margin-bottom: 7vh;
   text-align:left;
 }
 
 .form-container {
-  margin-left:2rem;
+  margin-left:2vw;
   text-align: left;
 }
 
 .form-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 1.5vw;
+  margin-bottom: 1vw;
 }
 
 .input-group {
   display: flex;
   justify-content: left;
-  gap: 1rem;
-   margin-bottom: 2.5rem;
+  gap: 1vw;
+   margin-bottom: 2.5vw;
 
 }
 
 .input-box {
-  padding: 1rem;
-  font-size:1.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 1vw;
+  font-size:1vw;
+  border: 0.4vw solid #979393;
+  border-radius: 4vw;
 }
 
 .input-label {
   display: flex;
   align-items: center;
-  font-size: 1.25rem;
+  font-size: 1.25vw;
 }
 
 .email-label {
-  margin-right:1rem;
+  margin-right:1vw;
   align-items: center;
-  font-size: 1.25rem;
+  font-size: 1.25vw;
 }
 
 .submit-button {
-  padding: 1rem 2rem; /* Aumenta il padding per rendere il bottone più grande */
-  font-size: 2.5rem; /* Aumenta la dimensione del testo del bottone */
+  padding: 1.5vh 2vw; /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2.5vw; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
-  color: White;
-  background-color: #6a0dad; /* Colore viola */
-  border: GreenYellow;
-  border-radius: 35px;
+  color: rgb(130, 219, 170);
+  text-shadow: 5vh 5vh 5vh hsl(0, 0%, 0%);
+  background:radial-gradient( #4f2e6d,rgb(0, 0, 0)); /* Colore viola */
+  border: rgb(0, 0, 0);
+  border-radius:1vw;
+  border-width: 2vw;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-left:2rem;
+  margin-left:2vw;
 }
 
 .submit-button:hover {
   background-color: #5a0c9e; /* Colore viola più scuro */
 }
-@media (max-width: 768px) {
+@media (max-width: 768vw) {
   .header h1 {
-    font-size: 2rem;
+    font-size: 2vw;
   }
 
   .form input,
   button {
-    font-size: 1rem;
-    padding: 8px;
+    font-size: 1vw;
+    padding: 8vw;
   }
 }
 </style>

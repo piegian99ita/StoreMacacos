@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app2">
     <!-- Navigation Bar -->
     <nav class="navbar">
       <router-link to="/home" class="nav-item1">
@@ -104,7 +104,7 @@ html, body {
   box-sizing: border-box;
 }
 
-.app {
+.app2 {
   font-family: Arial, sans-serif;
   width: 100vw;
   height: 100vh;
@@ -113,39 +113,85 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-
+.content{
+  height: 100vh;
+  width: 100vw;
+ 
+}
+.container{
+  height: inherit;
+  width: inherit;
+}
 .title{
   text-align: center;
   font-family: 'Playfair Display', serif;
   color:rgb(226, 233, 190);
 
 
-  padding-top: 0rem;
-  padding-bottom: 1rem;
-  font-size: 5rem;
-  text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2em black;
+  
+  padding-bottom: 1vh;
+  font-size: 4vw;
+  text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2rem black;
 }
 
 .navbar {
   font-family: 'Roboto', sans-serif;
-  background-color: hsl(251, 51%, 15%);
-  opacity:90%;
+  background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
+  opacity:98%;
   height: 12vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: left;
   align-items: left;
-  padding: 1rem;
+  padding: 1vw;
+  z-index:1000;
+  position:sticky;
+  top:0;
+  box-shadow: 0 2vw 5vw rgb(0, 0, 0);
 }
+
 
 .nav-item {
   font-family: 'Roboto', sans-serif;
   color: #952bbe; 
   font-weight: 800;
-  font-size: 2.2rem;
-  padding: 1rem 4rem;
-  border-radius: 4px;
-  text-shadow: 5px 5px 5px hsl(0, 0%, 0%);
+  resize:none;
+  font-size: 2vw;
+  padding:1.2vh 4vw;
+  border-radius: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+}
+
+
+.logo {
+  width: 100%; /* Imposta la larghezza del logo */
+  height: 7.8vh; /* Mantieni le proporzioni dell'immagine */
+  padding-top: 0.5vh;
+  display: block; /* Rimuove lo spazio sotto l'immagine */
+}
+
+.home {
+  text-align: center;
+  padding: 1vh 0vw;
+  font-weight: 550vw;
+  color: rgb(196, 186, 186);
+  text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  gap: 1vw;
+}
+
+.nav-item1 {
+  color: #9b59b6; /* Viola */
+  font-family: 'Georgia', serif;
+  font-size: 2vw;
+  background-color: black;
+  border-radius: 1.5vh;
+  margin-right: 2vw;
+  padding: 0vh 1vw;
 }
 
 
@@ -153,8 +199,8 @@ html, body {
 
 .input-group label {
   display: block;
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: 2vw;
+  margin-bottom: 1vw;
   
 }
 
@@ -162,79 +208,56 @@ html, body {
 .input-group select {
   width: 10%;
   text-align: center;
-  font-size: 1em; /* Aumenta la dimensione del testo del select */
-  padding: 10px;
-  border: 1px solid #ff00d4;
-  border-radius: 4px;
-  box-shadow: 0px 4rem 8rem rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra al select */
+  font-size: 1vw; /* Aumenta la dimensione del testo del select */
+  padding: 0.5vw;
+  border: 0.1vw solid #316104;
+  border-radius: 0.5vw;
+ 
 }
 
 .form-container button{
-  padding: 1rem 2rem; /* Aumenta il padding per rendere il bottone più grande */
-  font-size: 2.5rem; /* Aumenta la dimensione del testo del bottone */
+  padding: 1vw 2vw; /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2vw; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
   color: White;
-  background-color: #42056e; /* Colore viola */
+  background:radial-gradient(rgb(25, 5, 41),#42056e) ; /* Colore viola */
   border: GreenYellow;
-  border-radius: 35px;
+  border-radius: 1.5vw;
   cursor: pointer;
-  margin-top: 5.5rem;
+  margin-top: 3vw;
   transition: background-color 0.3s;
-  margin-left:4rem;
+  margin-left:3vw;
 }
 
 .form-container{
   align-items:center;
-  font-size:1.5rem;
-  padding-bottom:1rem;
+  font-size:1vw;
+  padding-bottom:1vw;
 }
 .form-title{
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 2vw;
+  padding-top: 1vw;
   color:#952bbe;
   font-weight: 700;
 }
 
 .input-group {
-  margin-bottom: 20px;
-  margin-top: 20px;
-  padding-top: 1rem;
+  margin-bottom: 1vw;
+  padding-top: 1vw;
 }
 
-.logo {
-  width: auto; /* Imposta la larghezza del logo */
-  height: 8vh; /* Mantieni le proporzioni dell'immagine */
-  display: block; /* Rimuove lo spazio sotto l'immagine */
-}
 
-.input {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
 
-.nav-item1 {
-  color: #9b59b6; /* Viola */
-  font-family: 'Georgia', serif;
-  font-size: 2.5rem;
-  background-color: black;
-  border-radius: 10px;
-  margin-right: 2rem;
-  padding: 0rem 1rem;
-}
-
-.home {
-  text-align: center;
-  padding: 0.5rem 0.2rem;
-  
-  text-shadow: 1px 1px 2px red, 0 0 0.5rem blue, 0 0 0.2em blue;
-}
 .background-container {
-  position: relative;
-  overflow: hidden; /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
+  position: relative; /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
   color: white; /* Colore del testo */
-  padding: 70px; /* Padding per il contenuto */
-  padding-left:4.9rem;
+  padding: 2.5vw; /* Padding per il contenuto */
+  padding-left:3vw;
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  background-clip: border-box;
 }
 
 .background-container::before {
@@ -242,15 +265,16 @@ html, body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 100%;
+  min-width: 100%;
   background-image: url('../assets/giungla.jpg'); /* Percorso dell'immagine */
   opacity:60%;
   background-size: cover; /* Adatta l'immagine per coprire l'intero elemento */
   background-position: center; /* Centra l'immagine */
   background-repeat: no-repeat; /* Impedisce la ripetizione dell'immagine */
+  background-clip: border-box;
  /* Opacità dell'immagine di sfondo (50%) */
   z-index: -1; /* Assicura che lo pseudo-elemento stia dietro al contenuto */
 }

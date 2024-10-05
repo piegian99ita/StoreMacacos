@@ -88,53 +88,62 @@ export default {
 
 .navbar {
   font-family: 'Roboto', sans-serif;
-  background-color: hsl(251, 51%, 15%);
-  opacity:90%;
+  background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
+  opacity:98%;
   height: 12vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: left;
   align-items: left;
-  padding: 1rem;
+  padding: 1vw;
+  z-index:1000;
+  position:sticky;
+  top:0;
+  box-shadow: 0 2vw 5vw rgb(0, 0, 0);
 }
+
 
 .nav-item {
   font-family: 'Roboto', sans-serif;
   color: #952bbe; 
   font-weight: 800;
-  font-size: 2.2rem;
-  padding: 1rem 4rem;
-  border-radius: 4px;
-  text-shadow: 5px 5px 5px hsl(0, 0%, 0%);
+  resize:none;
+  font-size: 2vw;
+  padding:1.2vh 4vw;
+  border-radius: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
 
+
 .logo {
-  width: auto; /* Imposta la larghezza del logo */
-  height: 8vh; /* Mantieni le proporzioni dell'immagine */
+  width: 100%; /* Imposta la larghezza del logo */
+  height: 7.8vh; /* Mantieni le proporzioni dell'immagine */
+  padding-top: 0.5vh;
   display: block; /* Rimuove lo spazio sotto l'immagine */
+}
+
+.home {
+  text-align: center;
+  padding: 1vh 0vw;
+  font-weight: 550vw;
+  color: rgb(196, 186, 186);
+  text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
 }
 
 .input {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1vw;
 }
 
 .nav-item1 {
   color: #9b59b6; /* Viola */
   font-family: 'Georgia', serif;
-  font-size: 2.5rem;
+  font-size: 2vw;
   background-color: black;
-  border-radius: 10px;
-  margin-right: 2rem;
-  padding: 0rem 1rem;
-}
-
-.home {
-  text-align: center;
-  padding: 0.5rem 0.2rem;
-  
-  text-shadow: 1px 1px 2px red, 0 0 0.5rem blue, 0 0 0.2em blue;
+  border-radius: 1.5vh;
+  margin-right: 2vw;
+  padding: 0vh 1vw;
 }
 
 
@@ -168,17 +177,17 @@ export default {
   opacity:50%;
   color: white;
   border: none;
-  padding: 15px;
+  padding: 1vw;
   cursor: pointer;
   z-index: 10;
 }
 
 .prev-button {
-  left: 550px;
+  left: 30vw;
 }
 
 .next-button {
-  right: 550px;
+  right: 30vw;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -192,7 +201,7 @@ export default {
   position: relative;
   overflow: hidden; /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
   color: white; /* Colore del testo */
-  padding: 20px; /* Padding per il contenuto */
+  padding: 2.5vw; /* Padding per il contenuto */
 }
 
 .background-container::before {
