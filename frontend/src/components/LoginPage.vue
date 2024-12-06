@@ -264,7 +264,7 @@ html, body {
     letter-spacing: 2px; /* Spaziatura tra le lettere */
     margin: 0; /* Rimuove il margine predefinito */
     animation: bounce 4s infinite; /* Animazione di rimbalzo */
-    -webkit-text-stroke: 0.3vh rgb(3, 41, 5); /* Bordo bianco di 1px */
+    /*-webkit-text-stroke: 0.3vh rgb(3, 41, 5); /* Bordo bianco di 1px */
     font-weight: 500;
     
     
@@ -284,34 +284,6 @@ html, body {
     6% { color: #ff4d88; }   /* Rosa medio chiaro */
     8% { color: #ff668f; }   /* Rosa chiaro */
     10% { color: #ff7f77; }  /* Rosa pallido */
-    12% { color: #ff9a61; }  /* Rosa molto pallido */
-    14% { color: #ffb54d; }  /* Rosa tenue */
-    16% { color: #ffcf3a; }  /* Rosa tenue dorato */
-    18% { color: #ffde29; }  /* Giallo dorato */
-    20% { color: #e6dd23; }  /* Giallo brillante */
-    22% { color: #ccdb27; }  /* Giallo limone */
-    24% { color: #b2d62c; }  /* Verde lime */
-    26% { color: #99d52f; }  /* Verde chiaro */
-    28% { color: #7ec933; }  /* Verde acceso */
-    30% { color: #66bc39; }  /* Verde medio */
-    32% { color: #57b12c; }  /* Verde fresco */
-    34% { color: #46a823; }  /* Verde tenue */
-    36% { color: #39a41f; }  /* Verde scuro */
-    38% { color: #3f9518; }  /* Verde menta */
-    40% { color: #4ca60d; }  /* Verde prato */
-    42% { color: #59b80c; }  /* Verde brillante */
-    44% { color: #6fd80b; }  /* Verde lime intenso */
-    46% { color: #8afc07; }  /* Verde fosforescente */
-    48% { color: #9bff03; }  /* Verde lime brillante */
-    50% { color: #aaff00; }  /* Verde lime molto brillante */
-    52% { color: #bbff05; }  /* Verde lime chiaro */
-    54% { color: #d3ff07; }  /* Verde lime luminoso */
-    56% { color: #e6ff1a; }  /* Giallo luminoso */
-    58% { color: #ffff2f; }  /* Giallo acceso */
-    60% { color: #fffb54; }  /* Giallo tenue */
-    62% { color: #ffea6a; }  /* Giallo chiaro */
-    64% { color: #ffdc81; }  /* Giallo pallido */
-    66% { color: #ffcc9a; }  /* Giallo molto pallido */
     68% { color: #ffb1b1; }  /* Rosa chiaro */
     70% { color: #ff99cc; }  /* Rosa pallido */
     72% { color: #ff80e1; }  /* Rosa acceso */
