@@ -22,7 +22,7 @@
         <p class="title">FELPA MACACOS (23€)</p>
         
           <div class="form-container">
-          <h2 class="form-title">SELEZIONARE UNA TAGLIA E IL COLORE:</h2>
+          <h2 class="form-title">SELEZIONARE TAGLIA E COLORE:</h2>
           <form @submit.prevent="handleSubmit">
             <div class="input-group">
             <label for="taglia">Seleziona una taglia:</label>
@@ -281,6 +281,198 @@ html, body {
 
 
 
+@media (max-width: 768px) {
+ 
+
+ .navbar {
+   font-family: 'Roboto', sans-serif;
+   background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
+   opacity:98%;
+   height: 10vh;
+   width: 100%;
+   display: flex;
+   justify-content: left;
+   align-items: left;
+   padding: 1vw;
+   z-index:1000;
+   position:sticky;
+   top:0;
+   box-shadow: 0 2vw 5vw rgb(0, 0, 0);
+ }
+ 
+ 
+ .nav-item {
+   font-family: 'Roboto', sans-serif;
+   color: #952bbe; 
+   font-weight: 800;
+   resize:none;
+   font-size: 2vh;
+   padding:3vh 3vw;
+   border-radius: 1vw;
+   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+ }
+ 
+ 
+ .logo {
+   width: 100%; /* Imposta la larghezza del logo */
+   height: 8vh; /* Mantieni le proporzioni dell'immagine */
+   padding-top: 1vh;
+   display: block; /* Rimuove lo spazio sotto l'immagine */
+ }
+ 
+ .home {
+   text-align: center;
+   padding: 3vh 0vw;
+   font-weight: 500vh;
+   font-size: 2.1vh;
+   color: rgb(196, 186, 186);
+   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
+ }
+ 
+ .input {
+   display: flex;
+   justify-content: center;
+   gap: 1vh;
+ }
+ 
+ .nav-item1 {
+   color: #9b59b6; /* Viola */
+   font-family: 'Georgia', serif;
+   font-size: 2vh;
+   background-color: black;
+   border-radius: 1.5vh;
+   
+   padding: 0vh 1vh;
+ }
+ 
+ html, body {
+   height: 100%;
+   margin: 0;
+   font-size: 16px;
+   box-sizing: border-box;
+ }
+ 
+ .app2 {
+   font-family: Arial, sans-serif;
+   width: 100vw;
+   height: 100vh;
+   margin: 0;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+ }
+ .content{
+   height: 100vh;
+   width: 100vw;
+  
+ }
+ .container{
+   height: inherit;
+   width: inherit;
+ }
+ .title{
+   text-align: center;
+   font-family: 'Playfair Display', serif;
+   color:rgb(226, 233, 190);
+ 
+ 
+   
+   padding-bottom: 1vh;
+   font-size: 5vh;
+   text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2rem black;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ .input-group label {
+   display: block;
+   font-size: 2.5vh;
+   margin-bottom: 1vh;
+   
+ }
+ 
+ /* Stili per i selettori */
+ .input-group select {
+   width: 40%;
+   text-align: center;
+   font-size: 2.5vh; /* Aumenta la dimensione del testo del select */
+   padding: 1vh;
+   border: 0.1vh solid #316104;
+   border-radius: 0.5vh;
+  
+ }
+ 
+ .form-container button{
+   padding: 2vh 3vh; /* Aumenta il padding per rendere il bottone più grande */
+   font-size: 3vh; /* Aumenta la dimensione del testo del bottone */
+   font-family: 'Georgia', serif;
+   color: White;
+   background:radial-gradient(rgb(25, 5, 41),#42056e) ; /* Colore viola */
+   border: GreenYellow;
+   border-radius: 1.5vh;
+   cursor: pointer;
+   margin-top: 8vh;
+   transition: background-color 0.3s;
+   margin-left: 30vw;
+ }
+ 
+ .form-container{
+   align-items:center;
+   font-size:1vh;
+   padding-bottom:1vh;
+ }
+ .form-title{
+   align-items: center;
+   font-size: 2.7vh;
+   padding-top: 2vh;
+   padding-bottom: 1vh;
+   color:#952bbe;
+   font-weight: 700;
+ }
+ 
+ .input-group {
+   margin-bottom: 1.5vh;
+   padding-top: 1.5vh;
+ }
+ 
+ 
+ 
+ .background-container {
+   position: relative; /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
+   color: white; /* Colore del testo */
+   padding: 2.5vw; /* Padding per il contenuto */
+   padding-left:3vw;
+   width: 100%;
+   height: 100%;
+   background-attachment: fixed;
+   background-clip: border-box;
+ }
+ 
+ .background-container::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   min-height: 90%;
+   min-width: 100%;
+   background-image: url('../assets/giungla.jpg'); /* Percorso dell'immagine */
+   opacity:60%;
+   background-size: cover; /* Adatta l'immagine per coprire l'intero elemento */
+   background-position: center; /* Centra l'immagine */
+   background-repeat: no-repeat; /* Impedisce la ripetizione dell'immagine */
+   background-clip: border-box;
+  /* Opacità dell'immagine di sfondo (50%) */
+   z-index: -1; /* Assicura che lo pseudo-elemento stia dietro al contenuto */
+ }
+ 
+ 
+ 
+ }
 
 
 </style>
