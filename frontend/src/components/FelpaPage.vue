@@ -14,46 +14,83 @@
     </nav>
 
     <!-- Main Content -->
-   
+
     <div class="content">
-      
-        <div class="container">
-          <div class="background-container">  
-        <p class="title">FELPA MACACOS (23€)</p>
-        
-          <div class="form-container">
-          <h2 class="form-title">SELEZIONARE TAGLIA E COLORE:</h2>
-          <form @submit.prevent="handleSubmit">
-            <div class="input-group">
-            <label for="taglia">Seleziona una taglia:</label>
-            <select id="taglia" name="taglia">
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
-            </select>
-            </div>
-          <div class="input-group">
-            <label for="colore">Seleziona un colore:</label>
-            <select id="colore" name="colore">
-              <option value="BIANCO">BIANCO</option>
-              <option value="NERO">NERO</option>
-            </select>
+
+      <div class="container">
+        <div class="background-container">
+          <p class="title">FELPA MACACOS (23€)</p>
+          <div class="grid-row">
+            <div>
+              <div class="form-container">
+                <h2 class="form-title">SELEZIONARE TAGLIA E COLORE:</h2>
+                <form @submit.prevent="handleSubmit">
+                  <div class="input-group">
+                    <label for="taglia">Seleziona una taglia:</label>
+                    <select id="taglia" name="taglia">
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                  </div>
+                  <div class="input-group">
+                    <label for="colore">Seleziona un colore:</label>
+                    <select id="colore" name="colore">
+                      <option value="BIANCO">BIANCO</option>
+                      <option value="NERO">NERO</option>
+                      <!--option value="VIOLA">VIOLA</option-->
+                    </select>
+                  </div>
+                  <button type="submit" class="submit-button">ORDINA</button>
+                </form>
               </div>
-              <button type="submit" class="submit-button">ORDINA</button>
-            </form>
+            </div>
+            <div class="immagine-felpa">
+              <img :src="selectedImage" alt="Felpa selezionata" class="felpa" v-if="selectedImage" >
+            </div>
           </div>
           <router-view />
         </div>
-      
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import { ref, computed } from "vue";
+//import bianca from "../assets/felpa-bianca.png";
+import nera from "../assets/felpa-nera.png";
+//import rosa from "../assets/felpa-viola.png";
 export default {
+
+  setup() {
+    // Variabile che tiene la taglia selezionata (se vuoi usarla)
+    const selectedSize = ref("S");
+
+    // Variabile per il colore selezionato
+    const selectedColor = ref("BIANCO");
+
+    // Mappa delle immagini per ogni colore
+    const colorImages = {
+      BIANCO: nera,
+      NERO: nera,
+      //VIOLA: viola
+    };
+
+    // Computed per aggiornare l'immagine in base alla selezione
+    const selectedImage = computed(() => colorImages[selectedColor.value] || "");
+
+    return {
+      selectedSize,
+      selectedColor,
+      selectedImage,
+    };
+  },
+
   
   methods: {
     async handleSubmit() {
@@ -194,6 +231,17 @@ html, body {
   padding: 0vh 1vw;
 }
 
+.grid-row {
+  display: grid;
+  grid-template-columns: auto auto; /* Definisce due colonne */
+  /* Opzionale: allinea gli elementi al centro verticalmente */
+  align-items: center;
+}
+
+
+.felpa { filter: drop-shadow(0.2px 0.2px 5px white);}
+
+
 
 
 
@@ -206,7 +254,7 @@ html, body {
 
 /* Stili per i selettori */
 .input-group select {
-  width: 10%;
+  width: 10vw;
   text-align: center;
   font-size: 1vw; /* Aumenta la dimensione del testo del select */
   padding: 0.5vw;
@@ -470,7 +518,12 @@ html, body {
    z-index: -1; /* Assicura che lo pseudo-elemento stia dietro al contenuto */
  }
  
- 
+ immmagine-felpa{
+    display:none;
+  }
+.felpa{
+  display:none;
+}
  
  }
 

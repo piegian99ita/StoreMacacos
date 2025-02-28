@@ -4,7 +4,7 @@
     <nav class="navbar">
       <router-link to="/home" class="nav-item1">
         <div class="input">
-          <img src='../assets/logo-macacos.jpg' alt="Logo" class="logo">
+          <img src="../assets/logo-macacos.jpg" alt="Logo" class="logo">
           <p class="home">HOME</p>
         </div>
       </router-link>
@@ -14,91 +14,123 @@
     </nav>
 
     <!-- Main Content -->
-   
     <div class="content">
-      
-        <div class="container">
-          <div class="background-container">  
-        <p class="title">T-SHIRT MACACOS (13€)</p>
-        
-          <div class="form-container">
-          <h2 class="form-title">SELEZIONARE TAGLIA E COLORE:</h2>
-          <form @submit.prevent="handleSubmit">
-            <div class="input-group">
-            <label for="taglia">Seleziona una taglia:</label>
-            <select id="taglia" name="taglia">
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
-            </select>
-            </div>
-          <div class="input-group">
-            <label for="colore">Seleziona un colore:</label>
-            <select id="colore" name="colore">
-              <option value="BIANCO">BIANCO</option>
-              <option value="NERO">NERO</option>
-              <option value="ROSA">ROSA</option>
-            </select>
+      <div class="container">
+        <div class="background-container">
+          <p class="title">T-SHIRT MACACOS (13€)</p>
+
+          <div class="grid-row">
+            <div>
+              <div class="form-container">
+                <h2 class="form-title">SELEZIONARE TAGLIA E COLORE:</h2>
+                <form @submit.prevent="handleSubmit">
+                  <div class="input-group">
+                    <label for="taglia">Seleziona una taglia:</label>
+                    <select id="taglia" name="taglia" v-model="selectedSize">
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                  </div>
+                  <div class="input-group">
+                    <label for="colore">Seleziona un colore:</label>
+                    <select id="colore" name="colore" v-model="selectedColor">
+                      <option value="BIANCO">BIANCO</option>
+                      <option value="NERO">NERO</option>
+                      <option value="ROSA">ROSA</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="submit-button">ORDINA</button>
+                </form>
               </div>
-              <button type="submit" class="submit-button">ORDINA</button>
-            </form>
+            </div>
+            <div class="immagine-t-shirt">
+              <img :src="selectedImage" alt="T-shirt selezionata" class="maglietta" v-if="selectedImage" >
+            </div>
           </div>
           <router-view />
         </div>
-      
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ref, computed } from "vue";
+import bianca from "../assets/t-shirt-bianca.png";
+import nera from "../assets/t-shirt-nera.png";
+import rosa from "../assets/t-shirt-rosa.png";
+
 export default {
-  
+  setup() {
+    // Variabile che tiene la taglia selezionata (se vuoi usarla)
+    const selectedSize = ref("S");
+
+    // Variabile per il colore selezionato
+    const selectedColor = ref("BIANCO");
+
+    // Mappa delle immagini per ogni colore
+    const colorImages = {
+      BIANCO: bianca,
+      NERO: nera,
+      ROSA: rosa,
+    };
+
+    // Computed per aggiornare l'immagine in base alla selezione
+    const selectedImage = computed(() => colorImages[selectedColor.value] || "");
+
+    return {
+      selectedSize,
+      selectedColor,
+      selectedImage,
+    };
+  },
+
   methods: {
     async handleSubmit() {
       try {
-        const selectElement = document.getElementById("taglia");
-        const taglia = selectElement.value;
+        const taglia = this.selectedSize;
+        const colore = this.selectedColor;
 
-        const selectElementColor = document.getElementById("colore");
-        const colore = selectElementColor.value;
-
-        const username = localStorage.getItem('username'); 
+        const username = localStorage.getItem("username");
         const encodedUsername = encodeURIComponent(username);
         console.log(username);
-        const response = await fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/tshirt', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            taglia: taglia,
-            colore: colore
-          })
-        })
 
+        const response = await fetch(
+          "https://storemacacos.onrender.com/api/ordine/" + encodedUsername + "/tshirt",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              taglia: taglia,
+              colore: colore,
+            }),
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Error submitting data')
+          throw new Error("Errore nell'invio dell'ordine");
         }
 
-        // After successful submission, navigate to the second page
-        
-        alert("T-SHIRT AGGIUNTA ALLA LISTA DEGLI ORDINI\nCOLORE: "+colore+"\nTAGLIA: "+taglia)
-        
+        // Dopo l'invio, mostra un alert
+        alert("T-SHIRT AGGIUNTA ALLA LISTA DEGLI ORDINI\nCOLORE: " + colore + "\nTAGLIA: " + taglia);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 
+
 <style scoped>
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   font-size: 16px;
@@ -114,22 +146,25 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-.content{
+
+.content {
   height: 100vh;
   width: 100vw;
- 
+
 }
-.container{
+
+.container {
   height: inherit;
   width: inherit;
 }
-.title{
+
+.title {
   text-align: center;
   font-family: 'Playfair Display', serif;
-  color:rgb(226, 233, 190);
+  color: rgb(226, 233, 190);
 
 
-  
+
   padding-bottom: 1vh;
   font-size: 4vw;
   text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2rem black;
@@ -137,38 +172,42 @@ html, body {
 
 .navbar {
   font-family: 'Roboto', sans-serif;
-  background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
-  opacity:98%;
+  background: radial-gradient(hsl(251, 57%, 22%), hsl(250, 51%, 11%));
+  opacity: 98%;
   height: 12vh;
   width: 100%;
   display: flex;
   justify-content: left;
   align-items: left;
   padding: 1vw;
-  z-index:1000;
-  position:sticky;
-  top:0;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
   box-shadow: 0 2vw 5vw rgb(0, 0, 0);
 }
 
 
 .nav-item {
   font-family: 'Roboto', sans-serif;
-  color: #952bbe; 
+  color: #952bbe;
   font-weight: 800;
-  resize:none;
+  resize: none;
   font-size: 2vw;
-  padding:1.2vh 4vw;
+  padding: 1.2vh 4vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
 
+.maglietta { filter: drop-shadow(0.2px 0.2px 5px white);}
 
 .logo {
-  width: 100%; /* Imposta la larghezza del logo */
-  height: 7.8vh; /* Mantieni le proporzioni dell'immagine */
+  width: 100%;
+  /* Imposta la larghezza del logo */
+  height: 7.8vh;
+  /* Mantieni le proporzioni dell'immagine */
   padding-top: 0.5vh;
-  display: block; /* Rimuove lo spazio sotto l'immagine */
+  display: block;
+  /* Rimuove lo spazio sotto l'immagine */
 }
 
 .home {
@@ -186,7 +225,8 @@ html, body {
 }
 
 .nav-item1 {
-  color: #9b59b6; /* Viola */
+  color: #9b59b6;
+  /* Viola */
   font-family: 'Georgia', serif;
   font-size: 2vw;
   background-color: black;
@@ -195,51 +235,61 @@ html, body {
   padding: 0vh 1vw;
 }
 
-
+.grid-row {
+  display: grid;
+  grid-template-columns: auto auto; /* Definisce due colonne */
+  /* Opzionale: allinea gli elementi al centro verticalmente */
+  align-items: center;
+}
 
 
 .input-group label {
   display: block;
   font-size: 2vw;
   margin-bottom: 1vw;
-  
+
 }
 
 /* Stili per i selettori */
 .input-group select {
-  width: 10%;
+  width: 10vw;
   text-align: center;
-  font-size: 1vw; /* Aumenta la dimensione del testo del select */
+  font-size: 1vw;
+  /* Aumenta la dimensione del testo del select */
   padding: 0.5vw;
   border: 0.1vw solid #316104;
   border-radius: 0.5vw;
- 
+
 }
 
-.form-container button{
-  padding: 1vw 2vw; /* Aumenta il padding per rendere il bottone più grande */
-  font-size: 2vw; /* Aumenta la dimensione del testo del bottone */
+.form-container button {
+  padding: 1vw 2vw;
+  /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2vw;
+  /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
   color: White;
-  background:radial-gradient(rgb(25, 5, 41),#42056e) ; /* Colore viola */
+  background: radial-gradient(rgb(25, 5, 41), #42056e);
+  /* Colore viola */
   border: GreenYellow;
   border-radius: 1.5vw;
   cursor: pointer;
   margin-top: 3vw;
   transition: background-color 0.3s;
-  margin-left:3vw;
+  margin-left: 3vw;
 }
 
-.form-container{
-  align-items:center;
-  font-size:1vw;
-  padding-bottom:1vw;
+.form-container {
+  align-items: center;
+  font-size: 1vw;
+  padding-bottom: 1vw;
 }
-.form-title{
+
+.form-title {
   align-items: center;
   font-size: 2vw;
   padding-top: 1vw;
-  color:#952bbe;
+  color: #952bbe;
   font-weight: 700;
 }
 
@@ -251,10 +301,13 @@ html, body {
 
 
 .background-container {
-  position: relative; /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
-  color: white; /* Colore del testo */
-  padding: 2.5vw; /* Padding per il contenuto */
-  padding-left:3vw;
+  position: relative;
+  /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
+  color: white;
+  /* Colore del testo */
+  padding: 2.5vw;
+  /* Padding per il contenuto */
+  padding-left: 3vw;
   width: 100%;
   height: 100%;
   background-attachment: fixed;
@@ -270,209 +323,240 @@ html, body {
   height: 100vh;
   min-height: 100%;
   min-width: 100%;
-  background-image: url('../assets/giungla.jpg'); /* Percorso dell'immagine */
-  opacity:60%;
-  background-size: cover; /* Adatta l'immagine per coprire l'intero elemento */
-  background-position: center; /* Centra l'immagine */
-  background-repeat: no-repeat; /* Impedisce la ripetizione dell'immagine */
+  background-image: url('../assets/giungla.jpg');
+  /* Percorso dell'immagine */
+  opacity: 60%;
+  background-size: cover;
+  /* Adatta l'immagine per coprire l'intero elemento */
+  background-position: center;
+  /* Centra l'immagine */
+  background-repeat: no-repeat;
+  /* Impedisce la ripetizione dell'immagine */
   background-clip: border-box;
- /* Opacità dell'immagine di sfondo (50%) */
-  z-index: -1; /* Assicura che lo pseudo-elemento stia dietro al contenuto */
+  /* Opacità dell'immagine di sfondo (50%) */
+  z-index: -1;
+  /* Assicura che lo pseudo-elemento stia dietro al contenuto */
 }
 
 
 @media (max-width: 768px) {
- 
 
-.navbar {
-  font-family: 'Roboto', sans-serif;
-  background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
-  opacity:98%;
-  height: 10vh;
-  width: 100%;
-  display: flex;
-  justify-content: left;
-  align-items: left;
-  padding: 1vw;
-  z-index:1000;
-  position:sticky;
-  top:0;
-  box-shadow: 0 2vw 5vw rgb(0, 0, 0);
+
+  .navbar {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(hsl(251, 57%, 22%), hsl(250, 51%, 11%));
+    opacity: 98%;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    padding: 1vw;
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2vw 5vw rgb(0, 0, 0);
+  }
+
+
+  .nav-item {
+    font-family: 'Roboto', sans-serif;
+    color: #952bbe;
+    font-weight: 800;
+    resize: none;
+    font-size: 2vh;
+    padding: 3vh 3vw;
+    border-radius: 1vw;
+    text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+  }
+
+
+  .logo {
+    width: 100%;
+    /* Imposta la larghezza del logo */
+    height: 8vh;
+    /* Mantieni le proporzioni dell'immagine */
+    padding-top: 1vh;
+    display: block;
+    /* Rimuove lo spazio sotto l'immagine */
+  }
+
+  .home {
+    text-align: center;
+    padding: 3vh 0vw;
+    font-weight: 500vh;
+    font-size: 2.1vh;
+    color: rgb(196, 186, 186);
+    text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
+  }
+
+  .input {
+    display: flex;
+    justify-content: center;
+    gap: 1vh;
+  }
+
+  .nav-item1 {
+    color: #9b59b6;
+    /* Viola */
+    font-family: 'Georgia', serif;
+    font-size: 2vh;
+    background-color: black;
+    border-radius: 1.5vh;
+
+    padding: 0vh 1vh;
+  }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .app2 {
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    height: 100vh;
+    width: 100vw;
+
+  }
+
+  .container {
+    height: inherit;
+    width: inherit;
+  }
+
+  .title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: rgb(226, 233, 190);
+
+
+
+    padding-bottom: 1vh;
+    font-size: 5vh;
+    text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2rem black;
+  }
+
+
+
+
+
+
+  .input-group label {
+    display: block;
+    font-size: 2.5vh;
+    margin-bottom: 1vh;
+
+  }
+
+  /* Stili per i selettori */
+  .input-group select {
+    width: 40%;
+    text-align: center;
+    font-size: 2.5vh;
+    /* Aumenta la dimensione del testo del select */
+    padding: 1vh;
+    border: 0.1vh solid #316104;
+    border-radius: 0.5vh;
+
+  }
+
+  .form-container button {
+    padding: 2vh 3vh;
+    /* Aumenta il padding per rendere il bottone più grande */
+    font-size: 3vh;
+    /* Aumenta la dimensione del testo del bottone */
+    font-family: 'Georgia', serif;
+    color: White;
+    background: radial-gradient(rgb(25, 5, 41), #42056e);
+    /* Colore viola */
+    border: GreenYellow;
+    border-radius: 1.5vh;
+    cursor: pointer;
+    margin-top: 8vh;
+    transition: background-color 0.3s;
+    margin-left: 30vw;
+  }
+
+  .form-container {
+    align-items: center;
+    font-size: 1vh;
+    padding-bottom: 1vh;
+  }
+
+  .form-title {
+    align-items: center;
+    font-size: 2.7vh;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+    color: #952bbe;
+    font-weight: 700;
+  }
+
+  .input-group {
+    margin-bottom: 1.5vh;
+    padding-top: 1.5vh;
+  }
+
+
+
+  .background-container {
+    position: relative;
+    /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
+    color: white;
+    /* Colore del testo */
+    padding: 2.5vw;
+    /* Padding per il contenuto */
+    padding-left: 3vw;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-clip: border-box;
+  }
+
+  .background-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 90%;
+    min-width: 100%;
+    background-image: url('../assets/giungla.jpg');
+    /* Percorso dell'immagine */
+    opacity: 60%;
+    background-size: cover;
+    /* Adatta l'immagine per coprire l'intero elemento */
+    background-position: center;
+    /* Centra l'immagine */
+    background-repeat: no-repeat;
+    /* Impedisce la ripetizione dell'immagine */
+    background-clip: border-box;
+    /* Opacità dell'immagine di sfondo (50%) */
+    z-index: -1;
+    /* Assicura che lo pseudo-elemento stia dietro al contenuto */
+  }
+
+  immmagine-t-shirt{
+    display:none;
+  }
+.maglietta{
+  display:none;
 }
 
 
-.nav-item {
-  font-family: 'Roboto', sans-serif;
-  color: #952bbe; 
-  font-weight: 800;
-  resize:none;
-  font-size: 2vh;
-  padding:3vh 3vw;
-  border-radius: 1vw;
-  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-}
-
-
-.logo {
-  width: 100%; /* Imposta la larghezza del logo */
-  height: 8vh; /* Mantieni le proporzioni dell'immagine */
-  padding-top: 1vh;
-  display: block; /* Rimuove lo spazio sotto l'immagine */
-}
-
-.home {
-  text-align: center;
-  padding: 3vh 0vw;
-  font-weight: 500vh;
-  font-size: 2.1vh;
-  color: rgb(196, 186, 186);
-  text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
-}
-
-.input {
-  display: flex;
-  justify-content: center;
-  gap: 1vh;
-}
-
-.nav-item1 {
-  color: #9b59b6; /* Viola */
-  font-family: 'Georgia', serif;
-  font-size: 2vh;
-  background-color: black;
-  border-radius: 1.5vh;
-  
-  padding: 0vh 1vh;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.app2 {
-  font-family: Arial, sans-serif;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-.content{
-  height: 100vh;
-  width: 100vw;
- 
-}
-.container{
-  height: inherit;
-  width: inherit;
-}
-.title{
-  text-align: center;
-  font-family: 'Playfair Display', serif;
-  color:rgb(226, 233, 190);
-
-
-  
-  padding-bottom: 1vh;
-  font-size: 5vh;
-  text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2rem black;
-}
-
-
-
-
-
-
-.input-group label {
-  display: block;
-  font-size: 2.5vh;
-  margin-bottom: 1vh;
-  
-}
-
-/* Stili per i selettori */
-.input-group select {
-  width: 40%;
-  text-align: center;
-  font-size: 2.5vh; /* Aumenta la dimensione del testo del select */
-  padding: 1vh;
-  border: 0.1vh solid #316104;
-  border-radius: 0.5vh;
- 
-}
-
-.form-container button{
-  padding: 2vh 3vh; /* Aumenta il padding per rendere il bottone più grande */
-  font-size: 3vh; /* Aumenta la dimensione del testo del bottone */
-  font-family: 'Georgia', serif;
-  color: White;
-  background:radial-gradient(rgb(25, 5, 41),#42056e) ; /* Colore viola */
-  border: GreenYellow;
-  border-radius: 1.5vh;
-  cursor: pointer;
-  margin-top: 8vh;
-  transition: background-color 0.3s;
-  margin-left: 30vw;
-}
-
-.form-container{
-  align-items:center;
-  font-size:1vh;
-  padding-bottom:1vh;
-}
-.form-title{
-  align-items: center;
-  font-size: 2.7vh;
-  padding-top: 2vh;
-  padding-bottom: 1vh;
-  color:#952bbe;
-  font-weight: 700;
-}
-
-.input-group {
-  margin-bottom: 1.5vh;
-  padding-top: 1.5vh;
-}
-
-
-
-.background-container {
-  position: relative; /* Assicura che lo pseudo-elemento non esca dai confini dell'elemento principale */
-  color: white; /* Colore del testo */
-  padding: 2.5vw; /* Padding per il contenuto */
-  padding-left:3vw;
-  width: 100%;
-  height: 100%;
-  background-attachment: fixed;
-  background-clip: border-box;
-}
-
-.background-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  min-height: 90%;
-  min-width: 100%;
-  background-image: url('../assets/giungla.jpg'); /* Percorso dell'immagine */
-  opacity:60%;
-  background-size: cover; /* Adatta l'immagine per coprire l'intero elemento */
-  background-position: center; /* Centra l'immagine */
-  background-repeat: no-repeat; /* Impedisce la ripetizione dell'immagine */
-  background-clip: border-box;
- /* Opacità dell'immagine di sfondo (50%) */
-  z-index: -1; /* Assicura che lo pseudo-elemento stia dietro al contenuto */
-}
-
-
 
 }
-
-
 </style>
