@@ -99,7 +99,7 @@ export default {
         console.log(username);
 
         const response = await fetch(
-          "https://storemacacos.onrender.com/api/ordine/" + encodedUsername + "/tshirt",
+          "https://storemacacos.up.railway.app/api/ordine/" + encodedUsername + "/tshirt",
           {
             method: "POST",
             headers: {

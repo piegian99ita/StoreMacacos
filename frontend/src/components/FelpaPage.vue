@@ -104,7 +104,7 @@ export default {
         const username = localStorage.getItem('username'); 
         const encodedUsername = encodeURIComponent(username);
         console.log(username);
-        const response = await fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/felpa', {
+        const response = await fetch('https://storemacacos.up.railway.app/api/ordine/'+encodedUsername+'/felpa', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

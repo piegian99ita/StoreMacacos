@@ -40,7 +40,7 @@ export default {
   methods: {
     async handleSubmit() {
       try {
-        const response = await fetch('https://storemacacos.onrender.com/api/utente/login', {
+        const response = await fetch('https://storemacacos.up.railway.app/api/utente/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
