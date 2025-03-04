@@ -8,7 +8,15 @@ router.post('/login', async (req, res) => {
     let name=req.body.name.toLowerCase().trim();
     const surname=req.body.surname.toLowerCase().trim();
     const email=(req.body.email).toLowerCase().trim();
-    const username =name+"-"+surname;
+    let username =name+"-"+surname;
+    // Normalizza la stringa e rimuove gli accenti
+    username = username.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  
+    // Sostituisce gli spazi con trattini
+    username = username.replace(/\s+/g, "-");
+    username = username.replace("'", "-");
+    username = username.replace("--", "-");
+    
     if(!surname){
         return res.status(400).json({error:"missing surname"});
     }
