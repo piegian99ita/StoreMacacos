@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Utente = require('./models/Utente'); // get our mongoose model
+const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 router.post('/login', async (req, res) => {
