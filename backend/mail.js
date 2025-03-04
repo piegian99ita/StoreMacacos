@@ -26,7 +26,7 @@ router.post('/prezzo', async (req, res) => {
         if(user.username=="pietro-giannini"){
             let parti=user.username.split("-");
             let nome=(parti[0]).charAt(0).toUpperCase();
-            let cognome=(part[1]).charAt(0).toUpperCase();
+            let cognome=(parti[1]).charAt(0).toUpperCase();
             if(parti.length>2){
                 for (let i=2;i<parti.length;i++){
                     cognome=cognome + " " + (parti[i]).charAt(0).toUpperCase();
