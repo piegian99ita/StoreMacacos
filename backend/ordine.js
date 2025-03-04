@@ -52,7 +52,7 @@ router.post('/:username/tshirt', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale+=13;
+        utente.totale+=16.50;
         utente.tshirt.push({colore:colore,taglia:taglia});
         await utente.save();
         return res.status(200).json({message:"aggiunto correttamente"});
@@ -91,7 +91,7 @@ router.post('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale+=23;
+        utente.totale+=25;
         utente.felpa.push({colore:colore,taglia:taglia});
         await utente.save();
         return res.status(200).json({message:"aggiunto correttamente"});
@@ -133,7 +133,7 @@ router.delete('/:username/tshirt', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale-=13;
+        utente.totale-=16.50;
         let index = utente.tshirt.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {
             utente.tshirt.splice(index, 1); 
@@ -178,7 +178,7 @@ router.delete('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale-=23;
+        utente.totale-=25;
         let index = utente.felpa.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {
             utente.felpa.splice(index, 1); 

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Utente = require('./models/Utente'); // get our mongoose model
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
 router.post('/login', async (req, res) => {
     let name=req.body.name.toLowerCase().trim();
@@ -80,6 +81,40 @@ router.get('/:username/totale', async (req, res) => {
     }
     else{
         
+        return res.status(200).json(utente.totale);
+    }
+});
+
+router.post('/:username/totale', async (req, res) => {
+    let username=req.params.username;
+    const pass=req.body.pass;
+    const macaco=req.body.macaco;
+    let totale=0;
+    let maglietta=16.30;
+    let felpa=24.60;
+    
+
+    if(pass!=process.env.PASS){
+        return res.status(400).json({error:"wrong or missing password"});
+    }
+    if(!username){
+        return res.status(400).json({error:"missing surname"});
+    }
+ 
+    
+    let utente=await Utente.findOne({username:username});
+    if(!utente){
+        return res.status(404).json({message:"user non trovato"});
+    }
+    else{
+        if(!macaco){
+            maglietta=16.50;
+            felpa=25;
+        }
+        totale+=(utente.tshirt.length)*maglietta+(utente.felpa.length)*felpa;
+
+        utente.totale=totale;
+        await utente.save();
         return res.status(200).json(utente.totale);
     }
 });

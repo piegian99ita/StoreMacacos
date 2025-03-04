@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import image1 from '@/assets/felpa.jpg';
+import image1 from '@/assets/felpa.png';
 import image2 from '@/assets/tshirt.jpg';
 import image3 from '@/assets/divisa.jpg';
 import image4 from '@/assets/nuova-divisa.jpg';

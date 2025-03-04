@@ -19,7 +19,7 @@
 
       <div class="container">
         <div class="background-container">
-          <p class="title">FELPA MACACOS (23€)</p>
+          <p class="title">FELPA MACACOS (25€)</p>
           <div class="grid-row">
             <div>
               <div class="form-container">
@@ -37,10 +37,10 @@
                   </div>
                   <div class="input-group">
                     <label for="colore">Seleziona un colore:</label>
-                    <select id="colore" name="colore">
+                    <select id="colore" name="colore" v-model="selectedColor">
                       <option value="BIANCO">BIANCO</option>
                       <option value="NERO">NERO</option>
-                      <!--option value="VIOLA">VIOLA</option-->
+                      <option value="VIOLA">VIOLA</option>
                     </select>
                   </div>
                   <button type="submit" class="submit-button">ORDINA</button>
@@ -62,9 +62,9 @@
 <script>
 
 import { ref, computed } from "vue";
-//import bianca from "../assets/felpa-bianca.png";
+import bianca from "../assets/felpa-bianca.png";
 import nera from "../assets/felpa-nera.png";
-//import rosa from "../assets/felpa-viola.png";
+import viola from "../assets/felpa-viola.png";
 export default {
 
   setup() {
@@ -72,13 +72,13 @@ export default {
     const selectedSize = ref("S");
 
     // Variabile per il colore selezionato
-    const selectedColor = ref("BIANCO");
+    const selectedColor = ref("NERO");
 
     // Mappa delle immagini per ogni colore
     const colorImages = {
-      BIANCO: nera,
+      BIANCO: bianca,
       NERO: nera,
-      //VIOLA: viola
+      VIOLA: viola
     };
 
     // Computed per aggiornare l'immagine in base alla selezione

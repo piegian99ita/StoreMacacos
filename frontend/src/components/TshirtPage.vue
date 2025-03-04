@@ -17,7 +17,7 @@
     <div class="content">
       <div class="container">
         <div class="background-container">
-          <p class="title">T-SHIRT MACACOS (13€)</p>
+          <p class="title">T-SHIRT MACACOS (16,50€)</p>
 
           <div class="grid-row">
             <div>
