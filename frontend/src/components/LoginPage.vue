@@ -56,11 +56,20 @@ export default {
           throw new Error('Error submitting data')
         }
 
+        let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
+
         // After successful submission, navigate to the second page
         const data = await response.json(); 
         const username = data.username;
         console.log(username);
         localStorage.setItem('username', username); 
+        if(macacos.includes(username)){
+          localStorage.setItem('m_price', "16.30"); 
+          localStorage.setItem('f_price', "24.60"); 
+        }else{
+          localStorage.setItem('m_price', "16.50"); 
+          localStorage.setItem('f_price', "25"); 
+        }
         this.$router.push({path: '/home' })
         console.log("prova");
       } catch (error) {

@@ -17,7 +17,7 @@
     <div class="content">
       <div class="container">
         <div class="background-container">
-          <p class="title">T-SHIRT MACACOS (16,50€)</p>
+          <p class="title">T-SHIRT MACACOS ({{m_p}}€)</p>
 
           <div class="grid-row">
             <div>
@@ -67,6 +67,7 @@ export default {
   setup() {
     // Variabile che tiene la taglia selezionata (se vuoi usarla)
     const selectedSize = ref("S");
+    const m_p=localStorage.getItem("m_price");
 
     // Variabile per il colore selezionato
     const selectedColor = ref("BIANCO");
@@ -85,6 +86,7 @@ export default {
       selectedSize,
       selectedColor,
       selectedImage,
+      m_p
     };
   },
 

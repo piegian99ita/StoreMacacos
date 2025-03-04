@@ -19,7 +19,7 @@
 
       <div class="container">
         <div class="background-container">
-          <p class="title">FELPA MACACOS (25€)</p>
+          <p class="title">FELPA MACACOS ({{f_p}}€)</p>
           <div class="grid-row">
             <div>
               <div class="form-container">
@@ -73,6 +73,7 @@ export default {
 
     // Variabile per il colore selezionato
     const selectedColor = ref("NERO");
+    const f_p=localStorage.getItem("f_price");
 
     // Mappa delle immagini per ogni colore
     const colorImages = {
@@ -88,6 +89,7 @@ export default {
       selectedSize,
       selectedColor,
       selectedImage,
+      f_p
     };
   },
 

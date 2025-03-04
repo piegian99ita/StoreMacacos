@@ -4,6 +4,9 @@ const Utente = require('./models/Utente'); // get our mongoose model
 const Felpa = require('./models/Felpa');
 const Tshirt = require('./models/Tshirt');
 
+let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
+
+
 router.get('/:username', async (req, res) => {
     let username=req.params.username;
     
@@ -52,7 +55,11 @@ router.post('/:username/tshirt', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale+=16.50;
+        if(macacos.includes(utente.username)){
+            utente.totale+=16.30;
+        }else{
+            utente.totale+=16.50;
+        }  
         utente.tshirt.push({colore:colore,taglia:taglia});
         await utente.save();
         return res.status(200).json({message:"aggiunto correttamente"});
@@ -91,7 +98,11 @@ router.post('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale+=25;
+        if(macacos.includes(utente.username)){
+            utente.totale+=24.60;
+        }else{
+            utente.totale+=25;
+        }  
         utente.felpa.push({colore:colore,taglia:taglia});
         await utente.save();
         return res.status(200).json({message:"aggiunto correttamente"});
@@ -133,7 +144,11 @@ router.delete('/:username/tshirt', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale-=16.50;
+        if(macacos.includes(utente.username)){
+            utente.totale-=16.30;
+        }else{
+            utente.totale-=16.50;
+        }  
         let index = utente.tshirt.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {
             utente.tshirt.splice(index, 1); 
@@ -178,7 +193,11 @@ router.delete('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale-=25;
+        if(macacos.includes(utente.username)){
+            utente.totale-=24.60;
+        }else{
+            utente.totale-=25;
+        }  
         let index = utente.felpa.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {
             utente.felpa.splice(index, 1); 
