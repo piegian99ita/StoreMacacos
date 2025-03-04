@@ -113,6 +113,7 @@ router.post('/:username/totale', async (req, res) => {
             felpa=25;
         }
         totale+=(utente.tshirt.length)*maglietta+(utente.felpa.length)*felpa;
+        totale = parseFloat(totale.toFixed(2));
 
         utente.totale=totale;
         await utente.save();
