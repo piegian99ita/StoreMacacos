@@ -17,6 +17,6 @@ app.use('/api/utente',utente);
 app.use('/api/ordine',ordine);
 app.use('/felpe',felpa);
 app.use('/magliette',maglietta);
-app.use('api/mail',mail)
+app.use('/api/mail',mail);
 
 module.exports=app;
