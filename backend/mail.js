@@ -25,13 +25,18 @@ router.post('/prezzo', async (req, res) => {
     for (const user of users) {
         if(user.username=="pietro-giannini"){
             let parti=user.username.split("-");
-            let nome=(parti[0]).charAt(0).toUpperCase();
-            let cognome=(parti[1]).charAt(0).toUpperCase();
+            
+            let nome=parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
+
+            let cognome=(parti[1]).charAt(0).toUpperCase() +parti[1].slice(1);
+
             if(parti.length>2){
                 for (let i=2;i<parti.length;i++){
-                    cognome=cognome + " " + (parti[i]).charAt(0).toUpperCase();
+                    cognome=cognome + " " + (parti[i]).charAt(0).toUpperCase() + parti[i].slice(1);
                 }
             }
+            console.log(nome)
+            console.log(cognome)
             
             
 
@@ -40,13 +45,10 @@ router.post('/prezzo', async (req, res) => {
                 from: process.env.SMTP_USER,
                 to: user.email,
                 subject: "Cambio prezzo",
-                text:  `Buongiorno,\ndopo che abbiamo contattato l'azienda che ci stampa il vestiario ci hanno comunicato che hanno cambiato i prezzi
-                        per i vari capi. Nel caso puoi trovare il totale dell'ordine andando alla pagina: https://storemacacos.netflify.app; 
-                        accedendo con le seguenti credenziali:\n\tnome:${nome}\n\tcognome:${cognome}\n\temail:${user.email}
-                        \nDopo aver fatto l'accesso, cliccando sulla barra in alto su ordini, potrai visualizzare il costo totale dell'ordine in fondo alla pagina 
-                        ed eventualmente togliere dall'ordine i vari capi d'abbigliamento.
-                        \nSono state aggiunte anche le felpe viola che possono essere ordinate cliccando sula barra in alto su felpe
-                        \n\nBuona giornata,\nBasket Macaco's team.`, 
+                text:  `Buongiorno,\ndopo che abbiamo contattato l'azienda che ci stampa il vestiario ci hanno comunicato che hanno cambiato i prezzi per i vari capi. Nel caso puoi trovare il totale dell'ordine andando alla pagina: https://storemacacos.netlify.app; accedendo con le seguenti credenziali:\n\tnome:${nome}\n\tcognome:${cognome}\n\temail:${user.email}
+                        \nDopo aver fatto l'accesso, cliccando sulla barra in alto su ordini, potrai visualizzare il costo totale dell'ordine in fondo alla pagina ed eventualmente togliere dall'ordine i vari capi d'abbigliamento.
+                        Sono state aggiunte anche le felpe viola che possono essere ordinate cliccando sula barra in alto su felpe
+                        \nBuona giornata,\nBasket Macaco's team.`, 
             };
 
             await transporter.sendMail(mailOptions);
