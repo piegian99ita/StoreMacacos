@@ -90,7 +90,7 @@ router.get('/:username/totale', async (req, res) => {
     }
     else{
         
-        return res.status(200).json(utente.totale);
+        return res.status(200).json(utente.totale.toFixed(2));
     }
 });
 
