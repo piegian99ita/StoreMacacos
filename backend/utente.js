@@ -125,7 +125,7 @@ router.post('/:username/totale', async (req, res) => {
 
         utente.totale=totale;
         await utente.save();
-        return res.status(200).json(utente.totale);
+        return res.status(200).json(utente.totale.toFixed(2));
     }
 });
 
