@@ -548,7 +548,7 @@ body {
 
   /* Stili per i selettori */
   .input-group select {
-    width: 50%;
+    width: 60%;
     text-align: center;
     font-size: 2.5vh;
     /* Aumenta la dimensione del testo del select */
@@ -643,7 +643,7 @@ body {
 
 
 .maglietta{
-  height: 13vh;
+  height: 12vh;
   width:auto;
   margin-right: 20vh;
 }
