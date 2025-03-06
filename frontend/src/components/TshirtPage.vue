@@ -169,6 +169,7 @@ body {
   margin: 0;
   font-size: 16px;
   box-sizing: border-box;
+  overflow-x:hidden;
 }
 
 .app2 {
@@ -179,6 +180,7 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  overflow-x:hidden;
 }
 
 .content {
@@ -496,6 +498,7 @@ body {
     margin: 0;
     font-size: 16px;
     box-sizing: border-box;
+    overflow-x:hidden;
   }
 
   .app2 {

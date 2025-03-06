@@ -497,6 +497,7 @@ body {
     margin: 0;
     font-size: 16px;
     box-sizing: border-box;
+    overflow-x:hidden;
   }
 
   .app2 {
