@@ -46,8 +46,8 @@ router.post('/prezzo', async (req, res) => {
                 to: user.email,
                 subject: "CAMBIO PREZZO MERCH MACACO'S",
                 text:  `Buongiorno,\ndopo che abbiamo contattato l'azienda che ci stampa il vestiario ci hanno comunicato che hanno cambiato i prezzi per i vari capi.\nNel caso puoi trovare il totale dell'ordine andando alla pagina: https://storemacacos.netlify.app; accedendo con le seguenti credenziali:\n\tnome:${nome}\n\tcognome:${cognome}\n\temail:${user.email}
-                        \nDopo aver fatto l'accesso, cliccando sulla barra in alto su ordini, potrai visualizzare il costo totale dell'ordine in fondo alla pagina ed eventualmente togliere dall'ordine i vari capi d'abbigliamento che non vuoi più ordinare.\nSono state aggiunte anche le felpe viola che possono essere ordinate nella pagina che si apre cliccando sula barra in alto su felpe.
-                        \Macaco's Basket team.`, 
+                        \nDopo aver fatto l'accesso, cliccando sulla barra in alto su ordini, potrai visualizzare il costo totale dell'ordine in fondo alla pagina ed eventualmente togliere dall'ordine i vari capi d'abbigliamento che non vuoi più ordinare.\nSono state aggiunte anche le felpe viola che possono essere ordinate nella pagina che si apre cliccando sula barra in alto su felpe.\nGli ordini chiuderanno tra una settimana.
+                        \nMacaco's Basket team.`, 
             };
 
             await transporter.sendMail(mailOptions);

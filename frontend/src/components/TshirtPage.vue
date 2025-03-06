@@ -2,15 +2,21 @@
   <div class="app2">
     <!-- Navigation Bar -->
     <nav class="navbar">
-      <router-link to="/home" class="nav-item1">
-        <div class="input">
-          <img src="../assets/logo-macacos.jpg" alt="Logo" class="logo">
-          <p class="home">HOME</p>
-        </div>
-      </router-link>
-      <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
-      <router-link to="/felpe" class="nav-item">FELPE</router-link>
-      <router-link to="/ordini" class="nav-item">ORDINI</router-link>
+      <div class="navbar-links">
+        <router-link to="/home" class="nav-item1">
+          <div class="input">
+            <img src="../assets/logo-macacos.jpg" alt="Logo" class="logo">
+            <p class="home">HOME</p>
+          </div>
+        </router-link>
+        <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
+        <router-link to="/felpe" class="nav-item">FELPE</router-link>
+        <router-link to="/ordini" class="nav-item">ORDINI</router-link>
+      </div>
+
+      <div class="navbar-right">
+        <router-link to="/" class="log-out" @click="logout">LOGOUT</router-link>
+      </div>
     </nav>
 
     <!-- Main Content -->
@@ -90,7 +96,33 @@ export default {
     };
   },
 
+  mounted() {
+    // Verifica se l'utente è già loggato
+    const username = localStorage.getItem('username');
+    const m_price = localStorage.getItem('m_price');
+    if (!username) {      
+      this.$router.push('/');
+    }else{
+      if(!m_price){
+        let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
+        if(macacos.includes(username)){
+          localStorage.setItem('m_price', "16.30"); 
+          localStorage.setItem('f_price', "24.60"); 
+        }else{
+          localStorage.setItem('m_price', "16.50"); 
+          localStorage.setItem('f_price', "25"); 
+        }
+      }
+    }
+  },
+
   methods: {
+    logout(){
+      localStorage.removeItem('username');
+            localStorage.removeItem('m_price');
+            localStorage.removeItem('f_price');
+            this.$router.push('/');
+    },
     async handleSubmit() {
       try {
         const taglia = this.selectedSize;
@@ -179,37 +211,30 @@ body {
   height: 12vh;
   width: 100%;
   display: flex;
-  justify-content: left;
-  align-items: left;
+  justify-content: space-between; /* Modifica qui */
+  align-items: center; /* Modifica qui */
   padding: 1vw;
   z-index: 1000;
   position: sticky;
   top: 0;
   box-shadow: 0 2vw 5vw rgb(0, 0, 0);
 }
-
-
 .nav-item {
   font-family: 'Roboto', sans-serif;
   color: #952bbe;
   font-weight: 800;
   resize: none;
   font-size: 2vw;
-  padding: 1.2vh 4vw;
+  padding: 1.2vh ;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
 
-.maglietta { filter: drop-shadow(0.2px 0.2px 5px white);}
-
 .logo {
   width: 100%;
-  /* Imposta la larghezza del logo */
   height: 7.8vh;
-  /* Mantieni le proporzioni dell'immagine */
   padding-top: 0.5vh;
   display: block;
-  /* Rimuove lo spazio sotto l'immagine */
 }
 
 .home {
@@ -228,14 +253,40 @@ body {
 
 .nav-item1 {
   color: #9b59b6;
-  /* Viola */
   font-family: 'Georgia', serif;
   font-size: 2vw;
   background-color: black;
   border-radius: 1.5vh;
-  margin-right: 2vw;
   padding: 0vh 1vw;
 }
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 4vw; /* Distanza tra i link */
+}
+
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.log-out {
+  font-family: 'Roboto', sans-serif;
+  color:white;
+  background: radial-gradient(rgb(255, 0, 0),rgb(95, 5, 5));
+  font-weight: 800;
+  resize: none;
+  font-size: 1.5vw;
+  padding: 1vh 1.5vw;
+  border-radius: 3vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+  margin-left: 2vw; /* Aggiunto margine per separare dal resto */
+  border: 0.7vh solid black;
+}
+
+.maglietta { filter: drop-shadow(0.2px 0.2px 5px white);}
 
 .grid-row {
   display: grid;
@@ -345,52 +396,91 @@ body {
 
 
   .navbar {
-    font-family: 'Roboto', sans-serif;
-    background: radial-gradient(hsl(251, 57%, 22%), hsl(250, 51%, 11%));
-    opacity: 98%;
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    padding: 1vw;
-    z-index: 1000;
-    position: sticky;
-    top: 0;
-    box-shadow: 0 2vw 5vw rgb(0, 0, 0);
-  }
+  font-family: 'Roboto', sans-serif;
+  background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
+  opacity:98%;
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  padding: 1vw;
+  z-index:1000;
+  position:sticky;
+  top:0;
+  box-shadow: 0 2vw 5vw rgb(0, 0, 0);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2vh; /* Distanza tra i link */
+}
 
 
-  .nav-item {
-    font-family: 'Roboto', sans-serif;
-    color: #952bbe;
-    font-weight: 800;
-    resize: none;
-    font-size: 2vh;
-    padding: 3vh 3vw;
-    border-radius: 1vw;
-    text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  }
+.navbar-right {
+  display: flex;
+  align-items: center;
+  
+}
+
+.log-out {
+  font-family: 'Roboto', sans-serif;
+  color:white;
+  background: radial-gradient(rgb(255, 0, 0),rgb(95, 5, 5));
+  font-weight: 800;
+  resize: none;
+  font-size: 1.7vw;
+  padding: 0.8vh 1vw;
+  border-radius: 2.5vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+  margin-left: 1.5vh; /* Aggiunto margine per separare dal resto */
+  border: 0.3vh solid black;
+}
 
 
-  .logo {
-    width: 100%;
-    /* Imposta la larghezza del logo */
-    height: 8vh;
-    /* Mantieni le proporzioni dell'immagine */
-    padding-top: 1vh;
-    display: block;
-    /* Rimuove lo spazio sotto l'immagine */
-  }
+.nav-item {
+  font-family: 'Roboto', sans-serif;
+  color: #952bbe; 
+  font-weight: 800;
+  resize:none;
+  font-size: 2vh;
+  padding:0vh 0vw;
+  border-radius: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+}
 
-  .home {
-    text-align: center;
-    padding: 3vh 0vw;
-    font-weight: 500vh;
-    font-size: 2.1vh;
-    color: rgb(196, 186, 186);
-    text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
-  }
+
+.logo {
+  width: 100%; /* Imposta la larghezza del logo */
+  height: 8vh; /* Mantieni le proporzioni dell'immagine */
+  width: auto;
+  padding-top: 1vh;
+  display: block; /* Rimuove lo spazio sotto l'immagine */
+}
+
+.home {
+  text-align: center;
+  padding: 3vh 0vw;
+  font-weight: 500vh;
+  font-size: 2vh;
+  color: rgb(196, 186, 186);
+  text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
+}
+
+
+
+.nav-item1 {
+  color: #9b59b6; /* Viola */
+  font-family: 'Georgia', serif;
+  font-size: 2vh;
+  background-color: black;
+  border-radius: 2vh;
+  
+  padding: 0vh 1vh;
+}
+
+
 
   .input {
     display: flex;
@@ -398,16 +488,7 @@ body {
     gap: 1vh;
   }
 
-  .nav-item1 {
-    color: #9b59b6;
-    /* Viola */
-    font-family: 'Georgia', serif;
-    font-size: 2vh;
-    background-color: black;
-    border-radius: 1.5vh;
-
-    padding: 0vh 1vh;
-  }
+  
 
   html,
   body {
@@ -464,7 +545,7 @@ body {
 
   /* Stili per i selettori */
   .input-group select {
-    width: 40%;
+    width: 50%;
     text-align: center;
     font-size: 2.5vh;
     /* Aumenta la dimensione del testo del select */
@@ -550,13 +631,20 @@ body {
     z-index: -1;
     /* Assicura che lo pseudo-elemento stia dietro al contenuto */
   }
-
-  immmagine-t-shirt{
-    display:none;
-  }
-.maglietta{
-  display:none;
+  .grid-row {
+  display: grid;
+  grid-template-columns: 55% 45%; /* Definisce due colonne */
+  /* Opzionale: allinea gli elementi al centro verticalmente */
+  align-items: left;
 }
+
+
+.maglietta{
+  height: 13vh;
+  width:auto;
+  margin-right: 20vh;
+}
+
 
 
 
