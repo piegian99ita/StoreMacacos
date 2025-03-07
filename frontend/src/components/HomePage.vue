@@ -84,7 +84,7 @@ export default {
     // Verifica se l'utente è già loggato
     const username = localStorage.getItem('username');
     const m_price = localStorage.getItem('m_price');
-    
+    console.log(username);
     if (!username) {    
       
       this.$router.push('/');

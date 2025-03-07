@@ -40,6 +40,7 @@ export default {
   mounted() {
     // Verifica se l'utente è già loggato
     const username = localStorage.getItem('username');
+    console.log(username);
     const m_price = localStorage.getItem('m_price');
     if (username) {
       if(!m_price){
@@ -52,8 +53,8 @@ export default {
           localStorage.setItem('f_price', "25"); 
         }
       }
-      
-      this.$router.push('/home');
+      this.$router.push({path: '/home' })
+      //this.$router.push('/home');
     }
   },
   methods: {
