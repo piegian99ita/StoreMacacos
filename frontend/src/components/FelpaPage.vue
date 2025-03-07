@@ -173,6 +173,7 @@ body {
   margin: 0;
   font-size: 16px;
   box-sizing: border-box;
+  overflow-x:hidden;
 }
 
 .app2 {
@@ -183,6 +184,7 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  overflow-x:hidden;
 }
 
 .content {
@@ -497,6 +499,7 @@ body {
     margin: 0;
     font-size: 16px;
     box-sizing: border-box;
+    overflow-x:hidden;
   }
 
   .app2 {
@@ -546,7 +549,7 @@ body {
 
   /* Stili per i selettori */
   .input-group select {
-    width: 50%;
+    width: 60%;
     text-align: center;
     font-size: 2.5vh;
     /* Aumenta la dimensione del testo del select */

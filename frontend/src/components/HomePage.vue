@@ -392,6 +392,7 @@ export default {
   .app {
   font-family: Arial, sans-serif;
   font-size: 16px;
+  overflow-x:hidden;
  
   height: 100vh;
   width: 100vw;
