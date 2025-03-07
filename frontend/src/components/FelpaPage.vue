@@ -5,12 +5,12 @@
       <div class="navbar-links">
         <router-link to="/home" class="nav-item1">
           <div class="input">
-            <img src="../assets/logo-macacos.jpg" alt="Logo" class="logo">
+            <img src="../assets/logo.png" alt="Logo" class="logo">
             <p class="home">HOME</p>
           </div>
         </router-link>
         <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
-        <router-link to="/felpe" class="nav-item">FELPE</router-link>
+        <router-link to="/felpe" class="nav-item-underline">FELPE</router-link>
         <router-link to="/ordini" class="nav-item">ORDINI</router-link>
       </div>
 
@@ -235,6 +235,18 @@ body {
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
+.nav-item-underline {
+  font-family: 'Roboto', sans-serif;
+  color: #952bbe;
+  font-weight: 800;
+  resize: none;
+  text-decoration:underline;
+  
+  font-size: 2vw;
+  padding: 1.2vh ;
+  border-radius: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+}
 
 .logo {
   width: 100%;
@@ -264,6 +276,7 @@ body {
   background-color: black;
   border-radius: 1.5vh;
   padding: 0vh 1vw;
+  filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
 }
 
 .navbar-links {
@@ -401,11 +414,12 @@ body {
 @media (max-width: 768px) {
 
 
+
   .navbar {
   font-family: 'Roboto', sans-serif;
   background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
   opacity:98%;
-  height: 10vh;
+  height: 8vh;
   width: 100vw;
   display: flex;
   justify-content: left;
@@ -440,7 +454,7 @@ body {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 1.5vh; /* Aggiunto margine per separare dal resto */
+  margin-left: 7.5vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -450,7 +464,19 @@ body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 2vh;
+  font-size: 3.5vw;
+  padding:0vh 0vw;
+  border-radius: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+}
+.nav-item-underline{
+  font-family: 'Roboto', sans-serif;
+  color: #952bbe; 
+  font-weight: 800;
+  resize:none;  
+  background-color: rgba(197, 243, 170, 0);
+  text-decoration: underline;
+  font-size: 3.5vw;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -459,7 +485,7 @@ body {
 
 .logo {
   width: 100%; /* Imposta la larghezza del logo */
-  height: 8vh; /* Mantieni le proporzioni dell'immagine */
+  height: 7vh; /* Mantieni le proporzioni dell'immagine */
   width: auto;
   padding-top: 1vh;
   display: block; /* Rimuove lo spazio sotto l'immagine */
@@ -467,30 +493,29 @@ body {
 
 .home {
   text-align: center;
-  padding: 3vh 0vw;
+  padding: 3vw 0vw;
   font-weight: 500vh;
-  font-size: 2vh;
+  font-size: 2.5vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
 }
 
 
+
 .nav-item1 {
   color: #9b59b6; /* Viola */
   font-family: 'Georgia', serif;
-  font-size: 2vh;
+  font-size: 1vw;
   background-color: black;
+  border: #316104   0.1vw;
   border-radius: 2vh;
-  
-  padding: 0vh 1vh;
+  filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
+  padding: 0vh 0.5vh;
 }
 
 
-  .input {
-    display: flex;
-    justify-content: center;
-    gap: 1vh;
-  }
+
+  
 
 
   html,

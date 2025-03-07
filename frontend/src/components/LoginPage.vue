@@ -29,6 +29,7 @@
 
 
 <script>
+import { nextTick } from 'vue';
 export default {
   data() {
     return {
@@ -38,26 +39,44 @@ export default {
     }
   },
   mounted() {
-    // Verifica se l'utente è già loggato
+    console.log('Elemento app:', document.getElementById('app'));
+    console.log("componente montato");
+},
+created(){
+  this.checkLoginAndRedirect();
+},
+
+methods: {
+  async checkLoginAndRedirect() {
     const username = localStorage.getItem('username');
-    console.log(username);
+    console.log(username + " login");
     const m_price = localStorage.getItem('m_price');
+
     if (username) {
-      if(!m_price){
-        let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
-        if(macacos.includes(username)){
+      if (!m_price) {
+        let macacos = ["pietro-giannini", "tommaso-passerini", "giacomo-serati", "nicola-trotter", 
+                       "giordani-luca", "lorenzo-fedrizzi", "andrea-pizzinini", "alessandro-chiste",
+                       "damiano-osello", "eugenio-tani", "umberto-tani", "gabriele-padovani", 
+                       "fabio-tessari", "giacomo-valla", "axel-barbieri", "luca-giannini", "pietro-mirandola"];
+
+        if (macacos.includes(username)) {
           localStorage.setItem('m_price', "16.30"); 
           localStorage.setItem('f_price', "24.60"); 
-        }else{
+        } else {
           localStorage.setItem('m_price', "16.50"); 
           localStorage.setItem('f_price', "25"); 
         }
       }
-      this.$router.push({path: '/home' })
-      //this.$router.push('/home');
+
+      // Aspetta che Vue abbia completamente montato il DOM
+      await this.$nextTick();
+      console.log("prova");
+      // Esegui la navigazione solo dopo che il DOM è pronto
+      setTimeout(async () => {
+      await this.$router.push('/home');
+    }, 0);
     }
   },
-  methods: {
     async handleSubmit() {
       try {
         const response = await fetch('https://storemacacos.up.railway.app/api/utente/login', {

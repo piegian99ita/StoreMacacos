@@ -10,7 +10,7 @@ import OrdiniPage from '../components/OrdiniPage.vue'
 
 const routes = [
   { path: '/', component: Login },
-  { path: '/home', component: Home },
+  { path: '/home',name: 'Home', component: Home },
   { path: '/tshirt', component: TshirtPage },
   { path: '/felpe', component: FelpaPage },
   {path: '/ordini',name: 'OrdiniPage',component: OrdiniPage},

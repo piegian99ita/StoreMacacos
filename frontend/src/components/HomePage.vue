@@ -5,7 +5,7 @@
       <div class="navbar-links">
         <router-link to="/home" class="nav-item1">
           <div class="input">
-            <img src="../assets/logo-macacos.jpg" alt="Logo" class="logo">
+            <img src="../assets/logo.png" alt="Logo" class="logo">
             <p class="home">HOME</p>
           </div>
         </router-link>
@@ -62,10 +62,11 @@
 </template>
 
 <script>
-import image1 from '@/assets/home-felpe.png';
-import image2 from '@/assets/home-magliette.png';
-import image3 from '@/assets/divisa.png';
-import image4 from '@/assets/nuova-divisa.png';
+import image1 from '../assets/home-felpe.png';
+import image2 from '../assets/home-magliette.png';
+import image3 from '../assets/divisa.png';
+import image4 from '../assets/nuova-divisa.png';
+import { nextTick } from 'vue';
 
 export default {
   data() {
@@ -85,11 +86,17 @@ export default {
     const username = localStorage.getItem('username');
     const m_price = localStorage.getItem('m_price');
     console.log(username);
-    if (!username) {    
+    
+    if (!username) { 
+      console.log("not username")   
       
-      this.$router.push('/');
+      nextTick(() => {
+        this.$router.push('/');
+      });
     }else{
+      console.log("username yes")
       if(!m_price){
+        console.log("no price")
         let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
         if(macacos.includes(username)){
           localStorage.setItem('m_price', "16.30"); 
@@ -99,7 +106,9 @@ export default {
           localStorage.setItem('f_price', "25"); 
         }
       }
+      console.log(this);
       this.startAutoSlide();
+      console.log("errore dopo");
     }
     
   },
@@ -204,6 +213,7 @@ export default {
   background-color: black;
   border-radius: 1.5vh;
   padding: 0vh 1vw;
+  filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
 }
 
 .navbar-links {
@@ -263,7 +273,7 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(rgb(224, 186, 213),rgb(114, 83, 109));
+  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
   
@@ -273,50 +283,51 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(rgb(224, 186, 213),rgb(114, 83, 109));
+  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
-
+  
 } 
 .ordini{
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(rgb(224, 186, 213),rgb(114, 83, 109));
+  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
+  
 }
 .felpe-title{
-  color: rgba(46, 1, 23, 0.801);
+  color: #952bbe;
   font-family: 'Roboto', sans-serif;
   font-size: 2vw;
   font-weight: 700;
   text-align: center;
-  text-shadow: -0.1vw -0.1vw 0.2vw hsl(0, 58%, 82%);
+  text-shadow: 0.1vw 0.1vw 0vw hsl(0, 0%, 0%);
   border-radius: 1.5vh;
   padding: 0vh 1vw;
   margin-top: 3%;
   letter-spacing: -2.5px;
 }
 .maglietta-title{
-  color: rgba(46, 1, 23, 0.801);
+  color: #952bbe;
   font-family: 'Roboto', sans-serif;
   font-size: 2vw;
   font-weight: 700;
   text-align: center;
-  text-shadow: -0.1vw -0.1vw 0.2vw hsl(0, 58%, 82%);
+  text-shadow: 0.1vw 0.1vw 0vw hsl(0, 0%, 0%);
   border-radius: 1.5vh;
   padding: 0vh 1vw;
   margin-top: 3%;
   letter-spacing: -2.5px;
 }
 .ordini-title{
-  color: rgba(46, 1, 23, 0.801);
+  color: #952bbe;
   font-family: 'Roboto', sans-serif;
   font-size: 2vw;
   font-weight: 700;
   text-align: center;
-  text-shadow: -0.1vw -0.1vw 0.2vw hsl(0, 58%, 82%);
+  text-shadow: 0.1vw 0.1vw 0vw hsl(0, 0%, 0%);
   border-radius: 1.5vh;
   padding: 0vh 1vw;
   margin-top: 3%;
@@ -362,7 +373,7 @@ export default {
   margin-top: 1%;
   margin-bottom: 5%;
   padding:0.5% 15%;
-  background-color: rgba(133, 49, 5, 0.82);
+  background:radial-gradient( rgba(245, 140, 255, 0.82), rgba(102, 27, 27, 0.82));
   border-radius: 5%;
 }
 
@@ -403,7 +414,7 @@ export default {
   font-family: 'Roboto', sans-serif;
   background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
   opacity:98%;
-  height: 10vh;
+  height: 8vh;
   width: 100vw;
   display: flex;
   justify-content: left;
@@ -438,7 +449,7 @@ export default {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 1.5vh; /* Aggiunto margine per separare dal resto */
+  margin-left: 7.5vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -448,7 +459,18 @@ export default {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 2vh;
+  font-size: 3.5vw;
+  padding:0vh 0vw;
+  border-radius: 1vw;
+  text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
+}
+.nav-item-underline {
+  font-family: 'Roboto', sans-serif;
+  color: #952bbe; 
+  font-weight: 800;
+  resize:none;
+  text-decoration: underline;
+  font-size: 3.5vw;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -457,7 +479,7 @@ export default {
 
 .logo {
   width: 100%; /* Imposta la larghezza del logo */
-  height: 8vh; /* Mantieni le proporzioni dell'immagine */
+  height: 7vh; /* Mantieni le proporzioni dell'immagine */
   width: auto;
   padding-top: 1vh;
   display: block; /* Rimuove lo spazio sotto l'immagine */
@@ -465,27 +487,24 @@ export default {
 
 .home {
   text-align: center;
-  padding: 3vh 0vw;
+  padding: 3vw 0vw;
   font-weight: 500vh;
-  font-size: 2vh;
+  font-size: 2.5vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
 }
 
-.input {
-  display: flex;
-  justify-content: center;
-  gap: 0.5vh;
-}
+
 
 .nav-item1 {
   color: #9b59b6; /* Viola */
   font-family: 'Georgia', serif;
-  font-size: 2vh;
+  font-size: 1vw;
   background-color: black;
+  border: #316104   0.1vw;
   border-radius: 2vh;
-  
-  padding: 0vh 1vh;
+  filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
+  padding: 0vh 0.5vh;
 }
 
 
@@ -581,17 +600,17 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(rgb(224, 186, 213),rgb(114, 83, 109));
+  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
   
   
 } 
 .magliette{
-  display:flex;
+    display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(rgb(224, 186, 213),rgb(114, 83, 109));
+  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
 
@@ -600,55 +619,55 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(rgb(224, 186, 213),rgb(114, 83, 109));
+  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
 }
 .felpe-title{
-  color: rgba(46, 1, 23, 0.801);
+  color: #952bbe;
   font-family: 'Roboto', sans-serif;
   font-size: 2.5vh;
   font-weight: 700;
   text-align: center;
-  text-shadow: -0.1vw -0.1vw 0.2vh hsl(0, 58%, 82%);
+  text-shadow: 0.1vw 0.1vw 0vw hsl(0, 0%, 0%);
   border-radius: 1.5vh;
   padding: 0vh 1vh;
   margin-top: 3%;
   letter-spacing: -0.2vh;
 }
 .maglietta-title{
-  color: rgba(46, 1, 23, 0.801);
+  color: #952bbe;
   font-family: 'Roboto', sans-serif;
   font-size: 2.5vh;
   font-weight: 700;
   text-align: center;
-  text-shadow: -0.1vw -0.1vw 0.2vh hsl(0, 58%, 82%);
+  text-shadow: 0.1vw 0.1vw 0vw hsl(0, 0%, 0%);
   border-radius: 1.5vh;
   padding: 0vh 1vh;
   margin-top: 3%;
   letter-spacing: -0.2vh;
 }
 .ordini-title{
-  color: rgba(46, 1, 23, 0.801);
+  color: #952bbe;
   font-family: 'Roboto', sans-serif;
   font-size: 2.5vh;
   font-weight: 700;
   text-align: center;
-  text-shadow: -0.1vw -0.1vw 0.2vh hsl(0, 58%, 82%);
+  text-shadow: 0.1vw 0.1vw 0vw hsl(0, 0%, 0%);
   border-radius: 1.5vh;
   padding: 0vh 1vh;
   margin-top: 3%;
   letter-spacing: -0.2vh;
 }
 
-.maglietta { 
+.maglietta {
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 200, 200));
   height:12.5vh;
   width:auto;
   margin-top: 1%;
   margin-bottom: 5%;
   padding:1% 3%;
-  background-color: rgba(133, 49, 5, 0.82);
+  background:radial-gradient( rgba(245, 140, 255, 0.82), rgba(102, 27, 27, 0.82));
   border-radius: 5%;
 }
 content{
