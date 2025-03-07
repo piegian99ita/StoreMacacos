@@ -23,7 +23,7 @@ router.post('/prezzo', async (req, res) => {
     }
 
     for (const user of users) {
-        if(user.username=="pietro-giannini"){
+        if(user.username!="francesco-gionghi"){
             let parti=user.username.split("-");
             
             let nome=parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
