@@ -283,7 +283,7 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(hsl(251, 57%, 22%)50%, hsl(250, 51%, 11%) 90%);
+  background:radial-gradient(#241858 50%, #130E2A);
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
   
@@ -600,7 +600,7 @@ export default {
   display:flex;
   flex-direction: column;
   align-items: center;
-  background:radial-gradient(hsl(251, 57%, 22%) 50%, hsl(250, 51%, 11%) 90%);
+  background:radial-gradient(hsl(251, 57%, 22%), hsl(250, 51%, 11%) );
   border-radius: 5%;
   filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
   
