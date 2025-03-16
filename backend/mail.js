@@ -81,7 +81,7 @@ router.post('/pagamento', async (req, res) => {
                 ordiniHTML += `<li>T-Shirt - Taglia: ${tshirt.taglia}, Colore: ${tshirt.colore}</li>`;
             });
             user.felpa.forEach(felpa => {
-                ordiniHTML += `<li>Felpa - Taglia: ${felpa.taglia}, Colore: ${felpa.colore}</li>`;
+                ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong></li>`;
             });
             ordiniHTML += `</ul>`;
 
@@ -93,12 +93,12 @@ router.post('/pagamento', async (req, res) => {
                     <html>
                     <body style="font-family: Arial, sans-serif; line-height: 1.6;">
                         <p>Buongiorno <strong>${nome} ${cognome}</strong>,</p>
-                        <p>Sono chiusi gli ordini per il merch Macacos.</p>
-                        <p>Trovi di seguito il riepilogo del tuo ordine</p>
+                        <p>Sono chiusi gli ordini per il merch Macacos.
+                        Trovi di seguito il riepilogo del tuo ordine</p>
                         <h3>Dettaglio Ordine:</h3>
                         ${ordiniHTML}
                         <p>E' possibile modificare l'ordine nel nostro sito entro il <strong>21/03</strong> (nel caso di modifiche è consigliato mandare una mail per notificare la modifica)</p>
-                        <p><a href="https://storemacacos.netlify.app" style="color: blue; font-weight: bold;">Visita il nostro store</a></p>
+                        <p><a href="https://storemacacos.netlify.app" style="color: blue; font-weight: bold;">Visita il nostro store per modificare l'ordine</a></p>
                         <p>Accedendo con le seguenti credenziali:</p>
                         <ul>
                             <li><strong>Nome:</strong> ${nome}</li>
@@ -107,14 +107,16 @@ router.post('/pagamento', async (req, res) => {
                         </ul>
 
                          <h3>ISTRUZIONI PAGAMENTO:</h3>
-                        <p>Il pagamento della somma totale di ${user.totale} deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.</p>
+                        <p>Il pagamento della somma totale di ${user.totale}€ deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.
+                        QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!</p>
                         <h3>METODI DI PAGAMENTO:</h3>
-                        <p>Bonifico al seguente indirizzo bancario: IBAN:<strong>IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></p>
-                        <p>In altrernativa è possibile fare il pagamento su Paypal al seguente utente: <strong>Luca Giordani</strong></p>
-                        <p>Qualunque sia il metodo di pagamento scrivete una mail per notificare l'avvenuto pagamento in risposta a questa mail o per messaggio al nostro account Instagram.</p>
+                        <li>Bonifico al seguente indirizzo bancario: IBAN:<strong>IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
+                        <li>Pagamento su Paypal al seguente utente: <strong>Luca Giordani</strong></li>
+                        
 
                         <p>Grazie per aver ordinato il nostro merch,</p>
                         <p><strong>Macaco's Basket team</strong></p>
+                        <img src="../assets/logo.png" alt="Logo" class="logo">
                     </body>
                     </html>
                 `
