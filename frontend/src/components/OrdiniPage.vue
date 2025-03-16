@@ -143,10 +143,10 @@ export default {
       fetch('https://storemacacos.up.railway.app/api/utente/'+encodedUsername+'/totale')
         .then(response => response.json())
         .then(data => {
-          this.totale = Number(data.toFixed(2));
+          this.totale = Number(Number(data).toFixed(2));
         })
         .catch(error => {
-          console.error("Errore nel recuperare le felpe:", error);
+          console.error("Errore nel recuperare totale", error);
         });
     },
     
