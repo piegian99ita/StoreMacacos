@@ -59,4 +59,79 @@ router.post('/prezzo', async (req, res) => {
 
 });
 
+
+router.post('/pagamento', async (req, res) => {
+    try {
+        const users = await Utente.find({ totale: { $ne: 0 } });
+
+        if (users.length === 0) {
+            return res.status(404).json({ message: "Nessun utente trovato" });
+        }
+
+        const emailPromises = users.map(async (user) => {
+            if(user.email=="piegian99@gmail.com"){
+
+                let parti = user.username.split("-");
+            let nome = parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
+            let cognome = parti.slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+
+            // Creazione elenco ordini in HTML
+            let ordiniHTML = `<ul>`;
+            user.tshirt.forEach(tshirt => {
+                ordiniHTML += `<li>T-Shirt - Taglia: ${tshirt.taglia}, Colore: ${tshirt.colore}</li>`;
+            });
+            user.felpa.forEach(felpa => {
+                ordiniHTML += `<li>Felpa - Taglia: ${felpa.taglia}, Colore: ${felpa.colore}</li>`;
+            });
+            ordiniHTML += `</ul>`;
+
+            const mailOptions = {
+                from: process.env.SMTP_USER,
+                to: user.email,
+                subject: "PAGAMENTO E CHIUSURA ORDINI MERCH MACACO'S",
+                html: `
+                    <html>
+                    <body style="font-family: Arial, sans-serif; line-height: 1.6;">
+                        <p>Buongiorno <strong>${nome} ${cognome}</strong>,</p>
+                        <p>Sono chiusi gli ordini per il merch Macacos.</p>
+                        <p>Trovi di seguito il riepilogo del tuo ordine</p>
+                        <h3>Dettaglio Ordine:</h3>
+                        ${ordiniHTML}
+                        <p>E' possibile modificare l'ordine nel nostro sito entro il <strong>21/03</strong> (nel caso di modifiche è consigliato mandare una mail per notificare la modifica)</p>
+                        <p><a href="https://storemacacos.netlify.app" style="color: blue; font-weight: bold;">Visita il nostro store</a></p>
+                        <p>Accedendo con le seguenti credenziali:</p>
+                        <ul>
+                            <li><strong>Nome:</strong> ${nome}</li>
+                            <li><strong>Cognome:</strong> ${cognome}</li>
+                            <li><strong>Email:</strong> ${user.email}</li>
+                        </ul>
+
+                         <h3>ISTRUZIONI PAGAMENTO:</h3>
+                        <p>Il pagamento della somma totale di ${user.totale} deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.</p>
+                        <h3>METODI DI PAGAMENTO:</h3>
+                        <p>Bonifico al seguente indirizzo bancario: IBAN:<strong>IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></p>
+                        <p>In altrernativa è possibile fare il pagamento su Paypal al seguente utente: <strong>Luca Giordani</strong></p>
+                        <p>Qualunque sia il metodo di pagamento scrivete una mail per notificare l'avvenuto pagamento in risposta a questa mail o per messaggio al nostro account Instagram.</p>
+
+                        <p>Grazie per aver ordinato il nostro merch,</p>
+                        <p><strong>Macaco's Basket team</strong></p>
+                    </body>
+                    </html>
+                `
+            };
+
+            return transporter.sendMail(mailOptions);
+            }
+            
+        });
+
+        await Promise.all(emailPromises);
+
+        res.json({ message: "Email inviate con successo!" });
+
+    } catch (error) {
+        console.error("Errore nell'invio delle email:", error);
+        res.status(500).json({ message: "Errore interno del server" });
+    }
+});
 module.exports=router;
