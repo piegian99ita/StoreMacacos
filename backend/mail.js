@@ -62,6 +62,10 @@ router.post('/prezzo', async (req, res) => {
 
 router.post('/pagamento', async (req, res) => {
     try {
+        let macacos = ["pietro-giannini", "tommaso-passerini", "giacomo-serati", "nicola-trotter", 
+            "giordani-luca", "lorenzo-fedrizzi", "andrea-pizzinini", "alessandro-chiste",
+            "damiano-osello", "eugenio-tani", "umberto-tani", "gabriele-padovani", 
+            "fabio-tessari", "giacomo-valla", "axel-barbieri", "luca-giannini", "pietro-mirandola"];
         const users = await Utente.find({ totale: { $ne: 0 } });
 
         if (users.length === 0) {
@@ -77,12 +81,23 @@ router.post('/pagamento', async (req, res) => {
 
             // Creazione elenco ordini in HTML
             let ordiniHTML = `<ul>`;
-            user.tshirt.forEach(tshirt => {
-                ordiniHTML += `<li>T-Shirt - Taglia: ${tshirt.taglia}, Colore: ${tshirt.colore}</li>`;
-            });
-            user.felpa.forEach(felpa => {
-                ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong></li>`;
-            });
+            if(macacos.includes(user.username)){
+                user.tshirt.forEach(tshirt => {
+                    ordiniHTML += `<li><strong>T-Shirt</strong> - Taglia: <strong>${tshirt.taglia}</strong> - Colore: <strong>${tshirt.colore}</strong> - 16.30€</li>`;
+                });
+                user.felpa.forEach(felpa => {
+                    ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong> - 24.60€</li>`;
+                });
+
+            }else{
+                user.tshirt.forEach(tshirt => {
+                    ordiniHTML += `<li><strong>T-Shirt</strong> - Taglia: <strong>${tshirt.taglia}</strong> - Colore: <strong>${tshirt.colore}</strong> - 16.50€</li>`;
+                });
+                user.felpa.forEach(felpa => {
+                    ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong> - 25€</li>`;
+                });
+            }
+            
             ordiniHTML += `</ul>`;
 
             const mailOptions = {
@@ -107,7 +122,7 @@ router.post('/pagamento', async (req, res) => {
                         </ul>
 
                          <h3>ISTRUZIONI PAGAMENTO:</h3>
-                        <p>Il pagamento della somma totale di ${user.totale.toFixed(2)}€ deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.<br>
+                        <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.<br>
                         QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!</p>
                         <h3>METODI DI PAGAMENTO:</h3>
                         <li>Bonifico al seguente indirizzo bancario: IBAN:<strong>IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
@@ -116,7 +131,6 @@ router.post('/pagamento', async (req, res) => {
 
                         <p>Grazie per aver ordinato il nostro merch,</p>
                         <p><strong>Macaco's Basket team</strong></p>
-                        <img src="../frontend/src/assets/logo.png" alt="Logo">
                     </body>
                     </html>
                 `

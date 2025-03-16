@@ -74,7 +74,7 @@ export default {
     return {
       tshirts: [],  // Array per le t-shirt
       felpe: [],     // Array per le felpe
-      totale: {type:Number}
+      totale: 0
     }
   },
   mounted() {
