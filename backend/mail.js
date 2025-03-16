@@ -93,7 +93,7 @@ router.post('/pagamento', async (req, res) => {
                     <html>
                     <body style="font-family: Arial, sans-serif; line-height: 1.6;">
                         <p>Buongiorno <strong>${nome} ${cognome}</strong>,</p>
-                        <p>Sono chiusi gli ordini per il merch Macacos.
+                        <p>Sono chiusi gli ordini per il merch Macacos.<br>
                         Trovi di seguito il riepilogo del tuo ordine</p>
                         <h3>Dettaglio Ordine:</h3>
                         ${ordiniHTML}
@@ -107,7 +107,7 @@ router.post('/pagamento', async (req, res) => {
                         </ul>
 
                          <h3>ISTRUZIONI PAGAMENTO:</h3>
-                        <p>Il pagamento della somma totale di ${user.totale}€ deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.
+                        <p>Il pagamento della somma totale di ${user.totale.toFixed(2)}€ deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.<br>
                         QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!</p>
                         <h3>METODI DI PAGAMENTO:</h3>
                         <li>Bonifico al seguente indirizzo bancario: IBAN:<strong>IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
@@ -116,7 +116,7 @@ router.post('/pagamento', async (req, res) => {
 
                         <p>Grazie per aver ordinato il nostro merch,</p>
                         <p><strong>Macaco's Basket team</strong></p>
-                        <img src="../assets/logo.png" alt="Logo" class="logo">
+                        <img src="../frontend/src/assets/logo.png" alt="Logo">
                     </body>
                     </html>
                 `

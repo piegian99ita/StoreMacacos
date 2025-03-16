@@ -58,7 +58,7 @@
           </div>
         </div>
       <div>
-        <p class="title2">TOTALE: {{ this.totale }} €</p>
+        <p class="title2">TOTALE: {{ this.totale.toFixed(2) }} €</p>
       </div>  
       
       </div>
