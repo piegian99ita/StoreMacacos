@@ -15,4 +15,5 @@ module.exports = mongoose.model('Utente', new Schema({
         taglia:{type:String, required:true},
         colore:{type:String,required:true}
     }],
+    edited:{type:Boolean,default:false},
 }));

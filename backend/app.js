@@ -6,6 +6,7 @@ const ordine=require('./ordine');
 const felpa=require('./felpa')
 const maglietta=require('./maglietta')
 const mail=require('./mail')
+const edit=require('./edit')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -18,5 +19,6 @@ app.use('/api/ordine',ordine);
 app.use('/felpe',felpa);
 app.use('/magliette',maglietta);
 app.use('/api/mail',mail);
+app.use('/api/edit',edit);
 
 module.exports=app;

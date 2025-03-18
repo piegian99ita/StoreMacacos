@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
     }
     let utente=await Utente.findOne({username:username});
     if(!utente){
-        await Utente.create({username:username,tshirt:undefined,felpa:undefined,totale:0,email:email});
+        await Utente.create({username:username,tshirt:undefined,felpa:undefined,totale:0,email:email,edited:true});
         return res.status(200).json({username:username});
     }
     else{
@@ -94,6 +94,7 @@ router.get('/:username/totale', async (req, res) => {
     }
 });
 
+
 router.post('/:username/totale', async (req, res) => {
     let username=req.params.username;
     const pass=req.body.pass;
@@ -124,6 +125,7 @@ router.post('/:username/totale', async (req, res) => {
         totale = parseFloat(totale.toFixed(2));
 
         utente.totale=totale;
+        utente.edited=true;
         await utente.save();
         return res.status(200).json(utente.totale.toFixed(2));
     }

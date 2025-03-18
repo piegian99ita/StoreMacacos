@@ -62,6 +62,7 @@ router.post('/:username/tshirt', async (req, res) => {
         }  
         utente.totale=utente.totale.toFixed(2);
         utente.tshirt.push({colore:colore,taglia:taglia});
+        utente.edited=true;
         await utente.save();
         return res.status(200).json({message:"aggiunto correttamente"});
     }
@@ -106,6 +107,7 @@ router.post('/:username/felpa', async (req, res) => {
         }  
         utente.totale=utente.totale.toFixed(2);
         utente.felpa.push({colore:colore,taglia:taglia});
+        utente.edited=true;
         await utente.save();
         return res.status(200).json({message:"aggiunto correttamente"});
     }
@@ -156,6 +158,7 @@ router.delete('/:username/tshirt', async (req, res) => {
         if (index !== -1) {
             utente.tshirt.splice(index, 1); 
         }
+        utente.edited=true;
         await utente.save();
         return res.status(200).json({message:"rimozione oggetto avvenuta correttamente"});
     }
@@ -206,6 +209,7 @@ router.delete('/:username/felpa', async (req, res) => {
         if (index !== -1) {
             utente.felpa.splice(index, 1); 
         }
+        utente.edited=true;
         await utente.save();
         return res.status(200).json({message:"rimozione oggetto avvenuta correttamente"});
     }
