@@ -73,7 +73,7 @@ router.post('/pagamento', async (req, res) => {
         }
 
         const emailPromises = users.map(async (user) => {
-            if(user.email=="piegian99@gmail.com"){
+            if(user.email=="mariopiz99@gmail.com"){
 
                 let parti = user.username.split("-");
             let nome = parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
@@ -125,7 +125,7 @@ router.post('/pagamento', async (req, res) => {
                         <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.<br>
                         QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!<br>
                         <strong>
-                        <span style="display: block; text-align: center;>"!!! IMPORTANTE !!!<</span><br>
+                        <span style="display: block; text-align: center;">!!! IMPORTANTE !!!<</span><br>
                         AFFINCHE'IL PAGAMENTO CON BONIFICO VENGA ACCETTATO LA CAUSALE DEVE ESSERE LA SEGUENTE:<br>
                         Regalo Macaco's fine anno - nome cognome - mail</strong></p>
                         <h3>METODI DI PAGAMENTO:</h3>
