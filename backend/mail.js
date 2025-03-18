@@ -73,7 +73,7 @@ router.post('/pagamento', async (req, res) => {
         }
 
         const emailPromises = users.map(async (user) => {
-            if(user.email=="piegian99@gmail.com"){
+            if(user.email!="piegian99@gmail.com"){
 
                 let parti = user.username.split("-");
             let nome = parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
@@ -123,10 +123,14 @@ router.post('/pagamento', async (req, res) => {
 
                          <h3>ISTRUZIONI PAGAMENTO:</h3>
                         <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.<br>
-                        QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!</p>
+                        QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!<br>
+                        <strong>
+                        <span style="display: block; text-align: center;>"!!! IMPORTANTE !!!<</span><br>
+                        AFFINCHE'IL PAGAMENTO CON BONIFICO VENGA ACCETTATO LA CAUSALE DEVE ESSERE LA SEGUENTE:<br>
+                        Regalo Macaco's fine anno - nome cognome - mail</strong></p>
                         <h3>METODI DI PAGAMENTO:</h3>
-                        <li>Bonifico al seguente indirizzo bancario: IBAN:<strong>IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
-                        <li>Pagamento su Paypal al seguente utente: <strong>Luca Giordani</strong></li>
+                        <li>Bonifico al seguente indirizzo bancario: IBAN:<strong> IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
+                        <li>Pagamento su PayPal: <a href="https://PayPal.Me/wuolzordan" style="color: blue; font-weight: bold;">PAGA QUI</a></li>
                         
 
                         <p>Grazie per aver ordinato il nostro merch,</p>
