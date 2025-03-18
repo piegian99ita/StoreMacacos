@@ -73,7 +73,7 @@ router.post('/pagamento', async (req, res) => {
         }
 
         const emailPromises = users.map(async (user) => {
-            if(user.email=="mariopiz99@gmail.com"){
+            if(user.edited){
 
                 let parti = user.username.split("-");
             let nome = parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
