@@ -3,7 +3,7 @@ const router = express.Router();
 const Utente = require('./models/Utente'); // get our mongoose model
 
 
-router.get('/orderEdited', async (req, res) => {
+router.get('/', async (req, res) => {
     
  
     
@@ -17,7 +17,7 @@ router.get('/orderEdited', async (req, res) => {
 });
 
 
-router.put('/clearEdit', async (req, res) => {    
+router.put('/clear', async (req, res) => {    
     let utenti=await Utente.find({edited:true});
     if (utenti.length === 0 || !utenti) {
         return res.status(200).json({ message: "Nessun ordine modificato" });
