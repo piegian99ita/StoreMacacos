@@ -17,15 +17,21 @@
           </div>
           <button type="submit" class="submit-button">ENTRA</button>
         </form>
-        
+
+        <!-- Link alla Privacy Policy -->
+        <p class="privacy-text">
+          Accedendo, confermi di aver letto e accettato la nostra 
+          <a href="/privacy" class="privacy-link">Privacy Policy</a>.
+        </p>
+
       </div>
-      
     </div>
     <div class="macaco">
       <img src='../assets/logo-macacos.jpg' alt="Logo" class="logo">
     </div>
-</div>
+  </div>
 </template>
+
 
 
 <script>
@@ -240,6 +246,24 @@ html, body {
 .submit-button:hover {
   background-color: #5a0c9e; /* Colore viola più scuro */
 }
+
+.privacy-text {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+  color: #555;
+}
+
+.privacy-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.privacy-link:hover {
+  text-decoration: underline;
+}
+
+
 @media (max-width: 768vw) {
   .header h1 {
     font-size: 2vw;
