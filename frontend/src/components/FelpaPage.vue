@@ -26,6 +26,7 @@
       <div class="container">
         <div class="background-container">
           <p class="title">FELPA MACACOS ({{f_p}}€)</p>
+          <p class="title">ORDINI CHIUSI!</p>
           <div class="grid-row">
             <div>
               <div class="form-container">
