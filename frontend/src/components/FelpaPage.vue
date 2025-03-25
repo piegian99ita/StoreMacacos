@@ -335,6 +335,7 @@ body {
 }
 
 .form-container button {
+  display:none;
   padding: 1vw 2vw;
   /* Aumenta il padding per rendere il bottone più grande */
   font-size: 2vw;
@@ -585,6 +586,7 @@ body {
   }
 
   .form-container button {
+    display:none;
     padding: 2vh 3vh;
     /* Aumenta il padding per rendere il bottone più grande */
     font-size: 3vh;
