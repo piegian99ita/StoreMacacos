@@ -122,10 +122,10 @@ router.post('/pagamento', async (req, res) => {
                         </ul>
 
                          <h3>ISTRUZIONI PAGAMENTO:</h3>
-                        <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> deve essere fatto entro il giorno <strong>23/03</strong> altrimenti verrà annullato l'ordine.<br>
+                        <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> deve essere fatto entro il giorno <strong>25/03</strong> altrimenti verrà annullato l'ordine.<br>
                         QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!<br>
                         <strong>
-                        <span style="display: block; text-align: center;">!!! IMPORTANTE !!!<</span><br>
+                        <span style="display: block; text-align: center;">!!! IMPORTANTE !!!</span><br>
                         AFFINCHE'IL PAGAMENTO CON BONIFICO VENGA ACCETTATO LA CAUSALE DEVE ESSERE LA SEGUENTE:<br>
                         Regalo Macaco's fine anno - nome cognome - mail</strong></p>
                         <h3>METODI DI PAGAMENTO:</h3>

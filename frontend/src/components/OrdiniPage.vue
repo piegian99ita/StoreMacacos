@@ -406,6 +406,7 @@ html, body {
   font-size: 1vw;
 }
 .submit-button{
+  display:none;
   padding: 0.7vw 0.6vw; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 0.8vw; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
@@ -422,6 +423,7 @@ html, body {
 }
 
 .submit-button2{
+  display:none;
   padding: 0.7vw 0.6vw; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 0.8vw; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
@@ -679,6 +681,7 @@ html, body {
   font-size: 1.5vh;
 }
 .submit-button{
+  display:none;
   padding: 0.7vh 0.6vh; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 1.1vh; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
@@ -695,6 +698,7 @@ html, body {
 }
 
 .submit-button2{
+  display:none;
   padding: 0.7vh 0.6vh; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 1.1vh; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
