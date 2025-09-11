@@ -113,7 +113,7 @@ export default {
     fetchTshirts() {
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.up.railway.app/api/utente/'+encodedUsername+'/ordini/tshirt')
+      fetch('https://storemacacos.onrender.com/api/utente/'+encodedUsername+'/ordini/tshirt')
         .then(response => response.json())
         .then(data => {
           this.tshirts = data;
@@ -127,7 +127,7 @@ export default {
     fetchFelpe() {
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.up.railway.app/api/utente/'+encodedUsername+'/ordini/felpa')
+      fetch('https://storemacacos.onrender.com/api/utente/'+encodedUsername+'/ordini/felpa')
         .then(response => response.json())
         .then(data => {
           this.felpe = data;
@@ -140,7 +140,7 @@ export default {
     fetchTotale() {
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.up.railway.app/api/utente/'+encodedUsername+'/totale')
+      fetch('https://storemacacos.onrender.com/api/utente/'+encodedUsername+'/totale')
         .then(response => response.json())
         .then(data => {
           this.totale = Number(data).toFixed(2);
@@ -155,7 +155,7 @@ export default {
       const tshirtToDelete = this.tshirts[index];
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.up.railway.app/api/ordine/'+encodedUsername+'/tshirt', {
+      fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/tshirt', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -183,7 +183,7 @@ export default {
       const felpaToDelete = this.felpe[index];
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.up.railway.app/api/ordine/'+encodedUsername+'/felpa', {
+      fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/felpa', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

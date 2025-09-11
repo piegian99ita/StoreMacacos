@@ -11,7 +11,9 @@
         </router-link>
         <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
         <router-link to="/felpe" class="nav-item">FELPE</router-link>
+        <router-link to="/ordini" class="nav-item">DIVISE</router-link>
         <router-link to="/ordini" class="nav-item">ORDINI</router-link>
+        
       </div>
 
       <div class="navbar-right">
@@ -33,6 +35,10 @@
               <router-link to="/felpe" class="felpe">
                 <p class="felpe-title">ORDINA UNA FELPA</p>
                 <img src="../assets/felpa-viola.png"  class="maglietta">
+              </router-link>
+              <router-link to="/divise" class="divise">
+                <p class="felpe-title">SCEGLI NUMERO E TAGLIA PER LA DIVISA </p>
+                <img src="../assets/nuova-divisa.png"  class="maglietta">
               </router-link>
               
               <router-link to="/ordini" class="ordini">

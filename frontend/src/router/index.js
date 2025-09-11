@@ -15,7 +15,7 @@ const routes = [
   { path: '/tshirt', component: TshirtPage },
   { path: '/felpe', component: FelpaPage },
   {path: '/ordini',name: 'OrdiniPage',component: OrdiniPage},
-  //{path: '/home/admin',name: 'AdminPage',component: AdminPage}
+  {path: '/divise',component: DivisaPage},
    {path: '/privacy',name: 'PrivacyPolicy',component: PrivacyPolicy}
 
 ];

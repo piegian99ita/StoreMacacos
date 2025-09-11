@@ -9,8 +9,8 @@
             <p class="home">HOME</p>
           </div>
         </router-link>
-        <router-link to="/tshirt" class="nav-item-underline">T-SHIRT</router-link>
-        <router-link to="/felpe" class="nav-item">FELPE</router-link>
+        <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
+        <router-link to="/felpe" class="nav-item-underline">FELPE</router-link>
         <router-link to="/ordini" class="nav-item">ORDINI</router-link>
       </div>
 
@@ -20,79 +20,71 @@
     </nav>
 
     <!-- Main Content -->
+
     <div class="content">
+
       <div class="container">
         <div class="background-container">
-          <p class="title">T-SHIRT MACACOS ({{m_p}}€)</p>
-
+          <p class="title">PRENOTAZIONE NUMERI MACACOS </p>
           <div class="grid-row">
             <div>
               <div class="form-container">
-                <h2 class="form-title">SELEZIONARE TAGLIA E COLORE:</h2>
+                <h2 class="form-title">SELEZIONARE TAGLIA E NUMERO:</h2>
                 <form @submit.prevent="handleSubmit">
                   <div class="input-group">
                     <label for="taglia">Seleziona una taglia:</label>
-                    <select id="taglia" name="taglia" v-model="selectedSize">
+                    <select id="taglia" name="taglia">
                       <option value="S">S</option>
                       <option value="M">M</option>
                       <option value="L">L</option>
                       <option value="XL">XL</option>
                       <option value="XXL">XXL</option>
                     </select>
-                  </div>
+                  </div>   <!--  inserire la griglia interattiva qui -->
                   <div class="input-group">
                     <label for="colore">Seleziona un colore:</label>
                     <select id="colore" name="colore" v-model="selectedColor">
                       <option value="BIANCO">BIANCO</option>
                       <option value="NERO">NERO</option>
-                      <option value="ROSA">ROSA</option>
+                      <option value="VIOLA">VIOLA</option>
                     </select>
                   </div>
-                  <button type="submit" class="submit-button">ORDINA</button>
+                  
                 </form>
               </div>
             </div>
-            <div class="immagine-t-shirt">
-              <img :src="selectedImage" alt="T-shirt selezionata" class="maglietta" v-if="selectedImage" >
+            <div class="immagine-felpa">
+              <img src="../assets/nuova-divisa.png",class="felpa"> </img >
             </div>
           </div>
           <router-view />
         </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, computed } from "vue";
-import bianca from "../assets/t-shirt-bianca.png";
-import nera from "../assets/t-shirt-nera.png";
-import rosa from "../assets/t-shirt-rosa.png";
 
+import { ref, computed } from "vue";
+import bianca from "../assets/felpa-bianca.png";
+import nera from "../assets/felpa-nera.png";
+import viola from "../assets/felpa-viola.png";
 export default {
+
   setup() {
     // Variabile che tiene la taglia selezionata (se vuoi usarla)
     const selectedSize = ref("S");
-    const m_p=localStorage.getItem("m_price");
 
-    // Variabile per il colore selezionato
-    const selectedColor = ref("BIANCO");
+    
 
-    // Mappa delle immagini per ogni colore
-    const colorImages = {
-      BIANCO: bianca,
-      NERO: nera,
-      ROSA: rosa,
-    };
+    
 
-    // Computed per aggiornare l'immagine in base alla selezione
-    const selectedImage = computed(() => colorImages[selectedColor.value] || "");
+    
 
     return {
-      selectedSize,
-      selectedColor,
-      selectedImage,
-      m_p
+      selectedSize
     };
   },
 
@@ -115,7 +107,7 @@ export default {
       }
     }
   },
-
+  
   methods: {
     logout(){
       localStorage.removeItem('username');
@@ -125,41 +117,42 @@ export default {
     },
     async handleSubmit() {
       try {
-        const taglia = this.selectedSize;
-        const colore = this.selectedColor;
+        const selectElement = document.getElementById("taglia");
+        const taglia = selectElement.value;
 
-        const username = localStorage.getItem("username");
+        const selectElementColor = document.getElementById("colore");
+        const colore = selectElementColor.value;
+
+        const username = localStorage.getItem('username'); 
         const encodedUsername = encodeURIComponent(username);
         console.log(username);
+        const response = await fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/felpa', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            taglia: taglia,
+            colore: colore
+          })
+        })
 
-        const response = await fetch(
-          "https://storemacacos.onrender.com/api/ordine/" + encodedUsername + "/tshirt",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              taglia: taglia,
-              colore: colore,
-            }),
-          }
-        );
 
         if (!response.ok) {
-          throw new Error("Errore nell'invio dell'ordine");
+          throw new Error('Error submitting data')
         }
 
-        // Dopo l'invio, mostra un alert
-        alert("T-SHIRT AGGIUNTA ALLA LISTA DEGLI ORDINI\nCOLORE: " + colore + "\nTAGLIA: " + taglia);
+        // After successful submission, navigate to the second page
+        
+        alert("FELPA AGGIUNTA ALLA LISTA DEGLI ORDINI\nCOLORE: "+colore+"\nTAGLIA: "+taglia)
+        
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
-
 
 
 <style scoped>
@@ -236,7 +229,8 @@ body {
   color: #952bbe;
   font-weight: 800;
   resize: none;
-  text-decoration: underline;
+  text-decoration:underline;
+  
   font-size: 2vw;
   padding: 1.2vh ;
   border-radius: 1vw;
@@ -299,8 +293,8 @@ body {
   margin-left: 2vw; /* Aggiunto margine per separare dal resto */
   border: 0.7vh solid black;
 }
+.felpa { filter: drop-shadow(0.2px 0.2px 5px white);}
 
-.maglietta { filter: drop-shadow(0.2px 0.2px 5px white);}
 
 .grid-row {
   display: grid;
@@ -329,22 +323,6 @@ body {
 
 }
 
-.form-container button {
-  padding: 1vw 2vw;
-  /* Aumenta il padding per rendere il bottone più grande */
-  font-size: 2vw;
-  /* Aumenta la dimensione del testo del bottone */
-  font-family: 'Georgia', serif;
-  color: White;
-  background: radial-gradient(rgb(25, 5, 41), #42056e);
-  /* Colore viola */
-  border: GreenYellow;
-  border-radius: 1.5vw;
-  cursor: pointer;
-  margin-top: 3vw;
-  transition: background-color 0.3s;
-  margin-left: 3vw;
-}
 
 .form-container {
   align-items: center;
@@ -409,6 +387,7 @@ body {
 @media (max-width: 768px) {
 
 
+
   .navbar {
   font-family: 'Roboto', sans-serif;
   background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
@@ -463,11 +442,12 @@ body {
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
-.nav-item-underline {
+.nav-item-underline{
   font-family: 'Roboto', sans-serif;
   color: #952bbe; 
   font-weight: 800;
-  resize:none;
+  resize:none;  
+  background-color: rgba(197, 243, 170, 0);
   text-decoration: underline;
   font-size: 3.5vw;
   padding:0vh 0vw;
@@ -508,8 +488,8 @@ body {
 
 
 
-
   
+
 
   html,
   body {
@@ -575,23 +555,6 @@ body {
     border: 0.1vh solid #316104;
     border-radius: 0.5vh;
 
-  }
-
-  .form-container button {
-    padding: 2vh 3vh;
-    /* Aumenta il padding per rendere il bottone più grande */
-    font-size: 3vh;
-    /* Aumenta la dimensione del testo del bottone */
-    font-family: 'Georgia', serif;
-    color: White;
-    background: radial-gradient(rgb(25, 5, 41), #42056e);
-    /* Colore viola */
-    border: GreenYellow;
-    border-radius: 1.5vh;
-    cursor: pointer;
-    margin-top: 8vh;
-    transition: background-color 0.3s;
-    margin-left: 30vw;
   }
 
   .form-container {
@@ -661,8 +624,8 @@ body {
 }
 
 
-.maglietta{
-  height: 12vh;
+.felpa{
+  height: 13vh;
   width:auto;
   margin-right: 20vh;
 }
