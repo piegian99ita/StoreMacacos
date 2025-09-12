@@ -464,7 +464,7 @@ export default {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 6.5vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 4vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -474,7 +474,7 @@ export default {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 100%;
+  font-size: 75%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -485,7 +485,7 @@ export default {
   font-weight: 800;
   resize:none;
   text-decoration: underline;
-  font-size: 3.5vw;
+  font-size: 75%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -493,8 +493,8 @@ export default {
 
 
 .logo {
-  width: 100%; /* Imposta la larghezza del logo */
-  height: 7vh; /* Mantieni le proporzioni dell'immagine */
+  width: 90%; /* Imposta la larghezza del logo */
+  height: 5vh; /* Mantieni le proporzioni dell'immagine */
   width: auto;
   padding-top: 1vh;
   display: block; /* Rimuove lo spazio sotto l'immagine */
@@ -504,7 +504,7 @@ export default {
   text-align: center;
   padding: 3vw 0vw;
   font-weight: 500vh;
-  font-size: 2.5vh;
+  font-size: 2vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
 }
@@ -521,6 +521,8 @@ export default {
   filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
   padding: 0vh 0.5vh;
 }
+
+
 
 
 
