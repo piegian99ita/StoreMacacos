@@ -39,12 +39,21 @@ router.post('/:username', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
+        if(!utente.divisa.numero){
+           utente.divisa.taglia=taglia;
+            utente.divisa.numero=numero;
+            utente.edited=true;
+            await utente.save();
+            return res.status(200).json({message:"aggiunto correttamente"}); 
+        }else{
+            await Divisa.deleteOne({numero:utente.divisa.numero});
+            utente.divisa.taglia=taglia;
+            utente.divisa.numero=numero;
+            utente.edited=true;
+            await utente.save();
+            return res.status(200).json({message:"modificato correttamente"});
+        }
         
-        utente.divisa.taglia=taglia;
-        utente.divisa.numero=numero;
-        utente.edited=true;
-        await utente.save();
-        return res.status(200).json({message:"aggiunto correttamente"});
     }
 });
 

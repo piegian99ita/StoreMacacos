@@ -30,7 +30,7 @@
           <div class="grid-row">
             <div>
               <div class="form-container">
-                <h2 class="form-title">SELEZIONARE TAGLIA E NUMERO:</h2>
+                <h2 class="form-title">SELEZIONARE TAGLIA E NUMERO:  {{ str_titolo }}</h2>
                 <form @submit.prevent="handleSubmit">
                   <div class="input-group">
                     <label for="taglia">Seleziona una taglia:</label>
@@ -75,22 +75,22 @@ import { ref, computed } from "vue";
 export default {
   data() {
     return {
-      available: [],  // Array per le t-shirt
       unavailable: [],     // Array per le felpe
       myNumber: 0,
       request_status: 0,
+      
     }
   },
 
-  setup() {
+  setup() { 
     // Variabile che tiene la taglia selezionata (se vuoi usarla)
     const selectedSize = ref("S");
   
     const selectedNumber=ref(null)
-    let stringa_bottone="numero non ancora selezionato"
-    let stringa_available=""
+    let stringa_bottone=ref("numero non ancora selezionato")
+    let stringa_available=ref("")
     // Mappa delle immagini per ogni colore
-    
+    let str_titolo=ref("");
 
 
 
@@ -98,7 +98,8 @@ export default {
       selectedSize,
       selectedNumber,
       stringa_bottone,
-      stringa_available
+      stringa_available,
+      str_titolo
     };
   },
 
@@ -109,8 +110,19 @@ export default {
     if (!username) {      
       this.$router.push('/');
     }
-    this.fetchMyNumber();
+    this.fetchMyNumber().then(()=>{
+      console.log(this.myNumber)
+      if(!this.myNumber){
+        this.str_titolo="";
+      }else{
+        this.str_titolo="n° prenotato="+this.myNumber
+        
+      };
+    });
+      
     this.fetchUnavailable();
+    
+    
   },
   computed: {
 
@@ -126,13 +138,16 @@ export default {
   },
   methods: {
     checkValue(){
-      const current_number=document.getElementById("number-select")==this.myNumber
+      const current_number=parseInt(document.getElementById("number-select").value)
+      console.log(this.unavailable);
+      console.log(current_number);
+      console.log(this.unavailable.includes(current_number));
       if(current_number==null){
-        this.request_status=3;
+        this.request_status=0;
         this.stringa_bottone="SELEZIONA NUMERO E TAGLIA"
         this.stringa_available=""
       }else if(current_number==this.myNumber){
-        this.request_status=4;
+        this.request_status=3;
         this.stringa_bottone="PREMI PER CAMBIARE TAGLIA AL TUO NUMERO"
         this.stringa_available="HAI GIA' SELEZIONATO QUESTO NUMERO"
       }else if(!this.unavailable.includes(current_number)){
@@ -190,10 +205,10 @@ export default {
       }
     },
     // Funzione per ottenere le t-shirt dall'API
-    fetchMyNumber() {
+    async fetchMyNumber() {
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.onrender.com/api/divise/'+encodedUsername+'/numero')
+      return fetch('https://storemacacos.onrender.com/api/divise/'+encodedUsername+'/numero')
         .then(response => response.json())
         .then(data => {
           this.myNumber = parseInt(data);
@@ -203,13 +218,15 @@ export default {
           this.myNumber=null;
         });
     },
-    fetchUnavailable() {
+    async fetchUnavailable() {
       const username = localStorage.getItem('username'); 
       const encodedUsername = encodeURIComponent(username);
-      fetch('https://storemacacos.onrender.com/api/divise/unavailable')
+      return fetch('https://storemacacos.onrender.com/api/divise/unavailable')
         .then(response => response.json())
         .then(data => {
+          
           this.unavailable = data.map(numero=>parseInt(numero));
+          
         })
         .catch(error => {
           console.error("Errore nel recuperare il numero:", error);
