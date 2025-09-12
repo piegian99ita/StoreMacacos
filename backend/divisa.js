@@ -58,7 +58,7 @@ router.get('/riepilogo', async (req, res) => {
     }
 });
 
-router.get('/:username', async (req, res) => {
+router.get('/:username/riepilogo', async (req, res) => {
     let username=req.params.username;
     
     if(!username){
