@@ -103,10 +103,7 @@ router.get('/unavailable', async (req, res) => {
     
     
     let divise =await Divisa.find();
-    if(!divise){
-        return res.status(200);
-    }
-    else{
+    
         let unavailable=[]
         if(!divise){
             return res.status(200).json(unavailable);
@@ -116,6 +113,6 @@ router.get('/unavailable', async (req, res) => {
         })
         return res.status(200).json(unavailable);}
         
-    }
+    
 });
 module.exports=router;
