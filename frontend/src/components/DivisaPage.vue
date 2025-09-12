@@ -196,7 +196,7 @@ export default {
       fetch('https://storemacacos.onrender.com/api/divise/'+encodedUsername+'/numero')
         .then(response => response.json())
         .then(data => {
-          this.myNumber = data;
+          this.myNumber = parseInt(data);
         })
         .catch(error => {
           console.error("Errore nel recuperare il numero:", error);

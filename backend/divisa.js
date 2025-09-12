@@ -100,12 +100,7 @@ router.get('/:username/numero', async (req, res) => {
 
 
 router.get('/unavailable', async (req, res) => {
-    let username=req.params.username;
     
-    if(!username){
-        return res.status(400).json({error:"missing surname"});
-    }
- 
     
     let divise =await Divisa.find();
     if(!divise){
