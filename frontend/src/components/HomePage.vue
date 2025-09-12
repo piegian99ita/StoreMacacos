@@ -11,7 +11,7 @@
         </router-link>
         <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
         <router-link to="/felpe" class="nav-item">FELPE</router-link>
-        <router-link to="/ordini" class="nav-item">DIVISE</router-link>
+        <router-link to="/divise" class="nav-item">DIVISE</router-link>
         <router-link to="/ordini" class="nav-item">ORDINI</router-link>
         
       </div>
@@ -251,7 +251,7 @@ export default {
 
 .container{
   display: grid;
-  grid-template-columns: 38% 62%; /* Definisce due colonne */
+  grid-template-columns: 45% 55%; /* Definisce due colonne */
   /* Opzionale: allinea gli elementi al centro verticalmente */
   align-items: center;
 }
@@ -263,7 +263,7 @@ export default {
 
 }
 .right{
-  margin-right:10%;
+  margin-right:0%;
 }
 
 .column {
@@ -295,6 +295,15 @@ export default {
   
 } 
 .ordini{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  background:radial-gradient(#241858 50%, #130E2A 90%);
+  border-radius: 5%;
+  filter: drop-shadow(0.2px 0.2px 5px rgb(255, 255, 255));
+  
+}
+.divise{
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -343,7 +352,7 @@ export default {
 .carousel-container {
   position: relative;
   width: 100%;
-  height:85vh;
+  height:100vh;
   margin: 0 auto;
   overflow: hidden;
 }

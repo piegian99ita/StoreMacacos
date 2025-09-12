@@ -11,6 +11,7 @@
         </router-link>
         <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
         <router-link to="/felpe" class="nav-item">FELPE</router-link>
+        <router-link to="/divise" class="nav-item">DIVISE</router-link>
         <router-link to="/ordini" class="nav-item-underline">ORDINI</router-link>
       </div>
 

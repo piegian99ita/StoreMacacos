@@ -78,3 +78,49 @@ router.get('/:username', async (req, res) => {
     }
 });
 
+router.get('/:username/numero', async (req, res) => {
+    let username=req.params.username;
+    
+    if(!username){
+        return res.status(400).json({error:"missing surname"});
+    }
+ 
+    
+    let utente=await Utente.findOne({username:username});
+    if(!utente){
+        return res.status(404).json({message:"user non trovato"});
+    }
+    else{
+        if(!utente.divisa){
+            return res.status(404).json({message:"nessuna divisa prenotata"});
+        }
+        return res.status(200).json(utente.divisa.numero);
+    }
+});
+
+
+router.get('/unavailable', async (req, res) => {
+    let username=req.params.username;
+    
+    if(!username){
+        return res.status(400).json({error:"missing surname"});
+    }
+ 
+    
+    let divise =await Divisa.find();
+    if(!divise){
+        return res.status(200);
+    }
+    else{
+        let unavailable=[]
+        if(!divise){
+            return res.status(200).json(unavailable);
+        }
+        else{divise.forEach((element)=>{
+            unavailable.push(element.numero);
+        })
+        return res.status(200).json(unavailable);}
+        
+    }
+});
+

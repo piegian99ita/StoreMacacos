@@ -10,7 +10,8 @@
           </div>
         </router-link>
         <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
-        <router-link to="/felpe" class="nav-item-underline">FELPE</router-link>
+        <router-link to="/felpe" class="nav-item">FELPE</router-link>
+        <router-link to="/divise" class="nav-item-underline">DIVISE</router-link>
         <router-link to="/ordini" class="nav-item">ORDINI</router-link>
       </div>
 
@@ -25,7 +26,7 @@
 
       <div class="container">
         <div class="background-container">
-          <p class="title">PRENOTAZIONE NUMERI MACACOS </p>
+          <p class="title">PRENOTAZIONE NUMERI DIVISE</p>
           <div class="grid-row">
             <div>
               <div class="form-container">
@@ -40,21 +41,23 @@
                       <option value="XL">XL</option>
                       <option value="XXL">XXL</option>
                     </select>
-                  </div>   <!--  inserire la griglia interattiva qui -->
-                  <div class="input-group">
-                    <label for="colore">Seleziona un colore:</label>
-                    <select id="colore" name="colore" v-model="selectedColor">
-                      <option value="BIANCO">BIANCO</option>
-                      <option value="NERO">NERO</option>
-                      <option value="VIOLA">VIOLA</option>
-                    </select>
                   </div>
-                  
+                  <div class="input-group">
+                    <label for="number-select">Seleziona un numero:</label>
+                      <select id="number-select" v-model="selectedNumber" @change="checkValue">
+                        <option disabled value="">Seleziona un numero</option>
+                        <option v-for="n in numbers" :key="n" :value="n">
+                        {{ n }}
+                        </option>
+                      </select>
+                      <label for="number-select">{{stringa_available}}</label>
+                  </div>
+                  <button type="submit" :class="{'submit-button-red':request_status==1,'submit-button-viola':request_status==0,'submit-button-green':request_status==2 ,'submit-button-blue':request_status==3}">{{stringa_bottone}}</button>
                 </form>
               </div>
             </div>
             <div class="immagine-felpa">
-              <img src="../assets/nuova-divisa.png",class="felpa"> </img >
+              <img src="../assets/nuova-divisa.png"  class="felpa"  >
             </div>
           </div>
           <router-view />
@@ -68,47 +71,83 @@
 <script>
 
 import { ref, computed } from "vue";
-import bianca from "../assets/felpa-bianca.png";
-import nera from "../assets/felpa-nera.png";
-import viola from "../assets/felpa-viola.png";
+
 export default {
+  data() {
+    return {
+      available: [],  // Array per le t-shirt
+      unavailable: [],     // Array per le felpe
+      myNumber: 0,
+      request_status: 0,
+    }
+  },
 
   setup() {
     // Variabile che tiene la taglia selezionata (se vuoi usarla)
     const selectedSize = ref("S");
-
+  
+    const selectedNumber=ref(null)
+    let stringa_bottone="numero non ancora selezionato"
+    let stringa_available=""
+    // Mappa delle immagini per ogni colore
     
 
-    
 
-    
 
     return {
-      selectedSize
+      selectedSize,
+      selectedNumber,
+      stringa_bottone,
+      stringa_available
     };
   },
 
   mounted() {
     // Verifica se l'utente è già loggato
     const username = localStorage.getItem('username');
-    const m_price = localStorage.getItem('m_price');
+    
     if (!username) {      
       this.$router.push('/');
-    }else{
-      if(!m_price){
-        let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
-        if(macacos.includes(username)){
-          localStorage.setItem('m_price', "16.30"); 
-          localStorage.setItem('f_price', "24.60"); 
-        }else{
-          localStorage.setItem('m_price', "16.50"); 
-          localStorage.setItem('f_price', "25"); 
-        }
-      }
     }
+    this.fetchMyNumber();
+    this.fetchUnavailable();
   },
-  
+  computed: {
+
+    
+    numbers(){
+      const numList = [];
+      for (let i = 0; i < 100; i++) {
+        numList.push(i);
+      }
+      return numList;
+    }
+    
+  },
   methods: {
+    checkValue(){
+      const current_number=document.getElementById("number-select")==this.myNumber
+      if(current_number==null){
+        this.request_status=3;
+        this.stringa_bottone="SELEZIONA NUMERO E TAGLIA"
+        this.stringa_available=""
+      }else if(current_number==this.myNumber){
+        this.request_status=4;
+        this.stringa_bottone="PREMI PER CAMBIARE TAGLIA AL TUO NUMERO"
+        this.stringa_available="HAI GIA' SELEZIONATO QUESTO NUMERO"
+      }else if(!this.unavailable.includes(current_number)){
+        this.request_status=2;
+        this.stringa_bottone="PRENOTA QUESTO NUMERO"
+        this.stringa_available="DISPONIBILE"
+
+      }else if(this.unavailable.includes(current_number)){
+        this.request_status=1;
+        this.stringa_bottone="NUMERO NON DISPONIBILE"
+        this.stringa_available="NON DISPONIBILE"
+
+      }
+
+    },
     logout(){
       localStorage.removeItem('username');
             localStorage.removeItem('m_price');
@@ -120,36 +159,62 @@ export default {
         const selectElement = document.getElementById("taglia");
         const taglia = selectElement.value;
 
-        const selectElementColor = document.getElementById("colore");
-        const colore = selectElementColor.value;
-
-        const username = localStorage.getItem('username'); 
-        const encodedUsername = encodeURIComponent(username);
-        console.log(username);
-        const response = await fetch('https://storemacacos.onrender.com/api/ordine/'+encodedUsername+'/felpa', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            taglia: taglia,
-            colore: colore
+        const selectElementNumber = document.getElementById("number-select");
+        const numero = selectElementNumber.value;
+        if(!this.unavailable.includes(numero)){
+          const username = localStorage.getItem('username'); 
+          const encodedUsername = encodeURIComponent(username);
+          console.log(username);
+          const response = await fetch('https://storemacacos.onrender.com/api/divise/'+encodedUsername, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              taglia: taglia,
+              numero: numero
+            })
           })
-        })
 
 
-        if (!response.ok) {
-          throw new Error('Error submitting data')
+          if (!response.ok) {
+            throw new Error('Error submitting data')
+          }          
+          alert("CAMBIO TAGLIA E/O NUMERO AVVENUTO CON SUCCESSO\NUMERO: "+numero+"\nTAGLIA: "+taglia)
+          this.myNumber=numero;
+          this.fetchUnavailable();
+
         }
-
-        // After successful submission, navigate to the second page
-        
-        alert("FELPA AGGIUNTA ALLA LISTA DEGLI ORDINI\nCOLORE: "+colore+"\nTAGLIA: "+taglia)
-        
       } catch (error) {
         console.error(error)
       }
-    }
+    },
+    // Funzione per ottenere le t-shirt dall'API
+    fetchMyNumber() {
+      const username = localStorage.getItem('username'); 
+      const encodedUsername = encodeURIComponent(username);
+      fetch('https://storemacacos.onrender.com/api/divise/'+encodedUsername+'/numero')
+        .then(response => response.json())
+        .then(data => {
+          this.myNumber = data;
+        })
+        .catch(error => {
+          console.error("Errore nel recuperare il numero:", error);
+          this.myNumber=null;
+        });
+    },
+    fetchUnavailable() {
+      const username = localStorage.getItem('username'); 
+      const encodedUsername = encodeURIComponent(username);
+      fetch('https://storemacacos.onrender.com/api/divise/unavailable')
+        .then(response => response.json())
+        .then(data => {
+          this.unavailable = data.map(numero=>parseInt(numero));
+        })
+        .catch(error => {
+          console.error("Errore nel recuperare il numero:", error);
+        });
+    },
   }
 }
 </script>
@@ -323,6 +388,70 @@ body {
 
 }
 
+.submit-button-red {
+  padding: 1vw 2vw;
+  /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2vw;
+  /* Aumenta la dimensione del testo del bottone */
+  font-family: 'Georgia', serif;
+  color: White;
+  background: radial-gradient(rgb(54, 7, 7), #cf0505);
+  /* Colore viola */
+  border: GreenYellow;
+  border-radius: 1.5vw;
+  cursor: pointer;
+  margin-top: 3vw;
+  transition: background-color 0.3s;
+  margin-left: 3vw;
+}
+.submit-button-blue {
+  padding: 1vw 2vw;
+  /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2vw;
+  /* Aumenta la dimensione del testo del bottone */
+  font-family: 'Georgia', serif;
+  color: White;
+  background: radial-gradient(rgb(0, 6, 83), #003cff);
+  /* Colore viola */
+  border: GreenYellow;
+  border-radius: 1.5vw;
+  cursor: pointer;
+  margin-top: 3vw;
+  transition: background-color 0.3s;
+  margin-left: 3vw;
+}
+.submit-button-green {
+  padding: 1vw 2vw;
+  /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2vw;
+  /* Aumenta la dimensione del testo del bottone */
+  font-family: 'Georgia', serif;
+  color: White;
+  background: radial-gradient(rgb(7, 61, 23), #06a86a);
+  /* Colore viola */
+  border: GreenYellow;
+  border-radius: 1.5vw;
+  cursor: pointer;
+  margin-top: 3vw;
+  transition: background-color 0.3s;
+  margin-left: 3vw;
+}
+.submit-button-viola {
+  padding: 1vw 2vw;
+  /* Aumenta il padding per rendere il bottone più grande */
+  font-size: 2vw;
+  /* Aumenta la dimensione del testo del bottone */
+  font-family: 'Georgia', serif;
+  color: White;
+  background: radial-gradient(rgb(25, 5, 41), #42056e);
+  /* Colore viola */
+  border: GreenYellow;
+  border-radius: 1.5vw;
+  cursor: pointer;
+  margin-top: 3vw;
+  transition: background-color 0.3s;
+  margin-left: 3vw;
+}
 
 .form-container {
   align-items: center;
@@ -555,6 +684,24 @@ body {
     border: 0.1vh solid #316104;
     border-radius: 0.5vh;
 
+  }
+
+  .form-container button {
+    
+    padding: 2vh 3vh;
+    /* Aumenta il padding per rendere il bottone più grande */
+    font-size: 3vh;
+    /* Aumenta la dimensione del testo del bottone */
+    font-family: 'Georgia', serif;
+    color: White;
+    background: radial-gradient(rgb(25, 5, 41), #42056e);
+    /* Colore viola */
+    border: GreenYellow;
+    border-radius: 1.5vh;
+    cursor: pointer;
+    margin-top: 8vh;
+    transition: background-color 0.3s;
+    margin-left: 30vw;
   }
 
   .form-container {
