@@ -464,7 +464,7 @@ export default {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 7.5vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 6.5vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -474,7 +474,7 @@ export default {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);

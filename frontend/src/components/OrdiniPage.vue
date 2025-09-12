@@ -486,21 +486,15 @@ html, body {
 
 
 @media (max-width: 768px) {
-  html, body {
-  height: 100%;
-  margin: 0;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.app2 {
+  
+ .app {
   font-family: Arial, sans-serif;
-  width: 100vw;
+  font-size: 16px;
+  overflow-x:hidden;
+ 
   height: 100vh;
+  width: 100vw;
   margin: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
 }
 
 .navbar {
@@ -542,7 +536,7 @@ html, body {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 7.5vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 6.5vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -552,19 +546,18 @@ html, body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
-.nav-item-underline{
+.nav-item-underline {
   font-family: 'Roboto', sans-serif;
   color: #952bbe; 
   font-weight: 800;
-  resize:none;  
-  background-color: rgba(197, 243, 170, 0);
+  resize:none;
   text-decoration: underline;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -600,6 +593,10 @@ html, body {
   filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
   padding: 0vh 0.5vh;
 }
+
+
+
+
 
 
 

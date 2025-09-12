@@ -417,8 +417,17 @@ body {
 @media (max-width: 768px) {
 
 
+ .app {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  overflow-x:hidden;
+ 
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
 
-  .navbar {
+.navbar {
   font-family: 'Roboto', sans-serif;
   background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
   opacity:98%;
@@ -457,7 +466,7 @@ body {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 7.5vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 6.5vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -467,19 +476,18 @@ body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
-.nav-item-underline{
+.nav-item-underline {
   font-family: 'Roboto', sans-serif;
   color: #952bbe; 
   font-weight: 800;
-  resize:none;  
-  background-color: rgba(197, 243, 170, 0);
+  resize:none;
   text-decoration: underline;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -515,6 +523,7 @@ body {
   filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
   padding: 0vh 0.5vh;
 }
+
 
 
 

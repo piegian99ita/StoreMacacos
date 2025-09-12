@@ -30,7 +30,7 @@
           <div class="grid-row">
             <div>
               <div class="form-container">
-                <h2 class="form-title">SELEZIONARE TAGLIA E NUMERO:  {{ str_titolo }}</h2>
+                <h2 class="form-title">SELEZIONARE TAGLIA E NUMERO:</h2>
                 <form @submit.prevent="handleSubmit">
                   <div class="input-group">
                     <label for="taglia">Seleziona una taglia:</label>
@@ -57,7 +57,9 @@
               </div>
             </div>
             <div class="immagine-felpa">
+              <p class="form-title2">{{ str_titolo }}</p>
               <img src="../assets/nuova-divisa.png"  class="felpa"  >
+
             </div>
           </div>
           <router-view />
@@ -115,7 +117,7 @@ export default {
       if(!this.myNumber){
         this.str_titolo="";
       }else{
-        this.str_titolo="n° prenotato="+this.myNumber
+        this.str_titolo="n° PRENOTATO : "+this.myNumber
         
       };
     });
@@ -148,8 +150,8 @@ export default {
         this.stringa_available=""
       }else if(current_number==this.myNumber){
         this.request_status=3;
-        this.stringa_bottone="PREMI PER CAMBIARE TAGLIA AL TUO NUMERO"
-        this.stringa_available="HAI GIA' SELEZIONATO QUESTO NUMERO"
+        this.stringa_bottone="CAMBIA TAGLIA AL TUO NUMERO"
+        this.stringa_available="HAI GIA' PRENOTATO QUESTO NUMERO"
       }else if(!this.unavailable.includes(current_number)){
         this.request_status=2;
         this.stringa_bottone="PRENOTA QUESTO NUMERO"
@@ -195,9 +197,10 @@ export default {
           if (!response.ok) {
             throw new Error('Error submitting data')
           }          
-          alert("CAMBIO TAGLIA E/O NUMERO AVVENUTO CON SUCCESSO\NUMERO: "+numero+"\nTAGLIA: "+taglia)
+          alert("CAMBIO TAGLIA E/O NUMERO AVVENUTO CON SUCCESSO\nNUMERO: "+numero+"\nTAGLIA: "+taglia)
           this.myNumber=numero;
           this.fetchUnavailable();
+          this.checkValue();
 
         }
       } catch (error) {
@@ -534,7 +537,17 @@ body {
 
 
 
-  .navbar {
+ .app {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  overflow-x:hidden;
+ 
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+.navbar {
   font-family: 'Roboto', sans-serif;
   background:radial-gradient(hsl(251, 57%, 22%),hsl(250, 51%, 11%)) ;
   opacity:98%;
@@ -573,7 +586,7 @@ body {
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 7.5vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 6.5vw; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
 }
 
@@ -583,19 +596,18 @@ body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
 }
-.nav-item-underline{
+.nav-item-underline {
   font-family: 'Roboto', sans-serif;
   color: #952bbe; 
   font-weight: 800;
-  resize:none;  
-  background-color: rgba(197, 243, 170, 0);
+  resize:none;
   text-decoration: underline;
-  font-size: 3.5vw;
+  font-size: 100%;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -631,6 +643,7 @@ body {
   filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
   padding: 0vh 0.5vh;
 }
+
 
 
 
@@ -703,7 +716,7 @@ body {
 
   }
 
-  .form-container button {
+  .submit-button-viola{
     
     padding: 2vh 3vh;
     /* Aumenta il padding per rendere il bottone più grande */
@@ -716,10 +729,67 @@ body {
     border: GreenYellow;
     border-radius: 1.5vh;
     cursor: pointer;
+    margin-top: 15vh;
+    transition: background-color 0.3s;
+    margin-left: 0vw;
+  }
+  .submit-button-green {
+    
+    padding: 2vh 3vh;
+    /* Aumenta il padding per rendere il bottone più grande */
+    font-size: 3vh;
+    /* Aumenta la dimensione del testo del bottone */
+    font-family: 'Georgia', serif;
+    color: White;
+     background: radial-gradient(rgb(7, 61, 23), #06a86a);
+    /* Colore viola */
+    border: GreenYellow;
+    border-radius: 1.5vh;
+    cursor: pointer;
     margin-top: 8vh;
     transition: background-color 0.3s;
-    margin-left: 30vw;
+    margin-left: 0vw;
   }
+  .submit-button-blue{
+    
+    padding: 2vh 3vh;
+    /* Aumenta il padding per rendere il bottone più grande */
+    font-size: 3vh;
+    /* Aumenta la dimensione del testo del bottone */
+    font-family: 'Georgia', serif;
+    color: White;
+    background: radial-gradient(rgb(0, 6, 83), #003cff);
+    /* Colore viola */
+    border: GreenYellow;
+    border-radius: 1.5vh;
+    cursor: pointer;
+    margin-top: 8vh;
+    transition: background-color 0.3s;
+    margin-left: 0vw;
+  }
+ .submit-button-red {
+    
+    padding: 2vh 3vh;
+    /* Aumenta il padding per rendere il bottone più grande */
+    font-size: 3vh;
+    /* Aumenta la dimensione del testo del bottone */
+    font-family: 'Georgia', serif;
+    color: White;
+    background: radial-gradient(rgb(54, 7, 7), #cf0505);
+    /* Colore viola */
+    border: GreenYellow;
+    border-radius: 1.5vh;
+    cursor: pointer;
+    margin-top: 8vh;
+    transition: background-color 0.3s;
+    margin-left: 0vw;
+  }
+
+
+  
+
+
+
 
   .form-container {
     align-items: center;
@@ -782,17 +852,29 @@ body {
   }
   .grid-row {
   display: grid;
-  grid-template-columns: 55% 45%; /* Definisce due colonne */
+  grid-template-columns: 50% 50%; /* Definisce due colonne */
   /* Opzionale: allinea gli elementi al centro verticalmente */
   align-items: left;
 }
 
-
-.felpa{
-  height: 13vh;
-  width:auto;
-  margin-right: 20vh;
+.immagine-felpa{
+  align-items: right;
 }
+.felpa{
+  height: 70%;
+  width:80%;
+  margin-left: 10%;
+  
+}
+.form-title2 {
+    align-items: center;
+    font-size: 2.7vh;
+    padding-top: 0vh;
+    padding-bottom: 1vh;
+    color: #952bbe;
+    font-weight: 700;
+    margin-left: 10%;
+  }
 
 
 
