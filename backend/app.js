@@ -8,14 +8,14 @@ const maglietta=require('./maglietta')
 const mail=require('./mail')
 const edit=require('./edit')
 const divisa=require('./divisa')
-const job=require('./cron.js')
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-job.start();
+
 app.use('/api/utente',utente);
 app.use('/api/ordine',ordine);
 app.use('/felpe',felpa);
