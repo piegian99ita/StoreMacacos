@@ -52,7 +52,11 @@
                     </select>
                     <label for="number-select" :style="{ color: request_status == 1  ? 'red' : 'yellowgreen' }">{{stringa_available}}</label>
                   </div>
-                  <button type="submit" :class="{'submit-button-red':request_status==1,'submit-button-viola':request_status==2,'submit-button-green':request_status==2 ,'submit-button-blue':request_status==3}">{{stringa_bottone}}</button>
+                  <button type="submit" :class="{
+                    'submit-button-red':request_status==1,
+                    'submit-button-viola':request_status==0,
+                    'submit-button-green':request_status==2 ,
+                    'submit-button-blue':request_status==3}">{{stringa_bottone}}</button>
                 </form>
               </div>
             </div>
@@ -472,6 +476,17 @@ body {
   transition: background-color 0.3s;
   margin-left: 3vw;
 }
+.submit-button-blue:hover{
+  background-color: darkblue;
+  transform: scale(1.02); /* Esempio di ingrandimento */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Esempio di ombra */
+}
+.submit-button-green:hover{
+  background-color: darkblue;
+  transform: scale(1.02); /* Esempio di ingrandimento */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Esempio di ombra */
+}
+
 
 .form-container {
   align-items: center;
