@@ -44,15 +44,15 @@
                   </div>
                   <div class="input-group">
                     <label for="number-select">Seleziona un numero:</label>
-                      <select id="number-select" v-model="selectedNumber" @change="checkValue">
-                        <option disabled value="">Seleziona un numero</option>
-                        <option v-for="n in numbers" :key="n" :value="n">
-                        {{ n }}
-                        </option>
-                      </select>
-                      <label for="number-select">{{stringa_available}}</label>
+                    <select id="number-select" v-model="selectedNumber" @change="checkValue">
+                      <option disabled value="">Seleziona un numero</option>
+                      <option v-for="n in numbers" :key="n" :value="n">
+                      {{ n }}
+                      </option>
+                    </select>
+                    <label for="number-select" :style="{ color: request_status == 1  ? 'red' : 'yellowgreen' }">{{stringa_available}}</label>
                   </div>
-                  <button type="submit" :class="{'submit-button-red':request_status==1,'submit-button-viola':request_status==0,'submit-button-green':request_status==2 ,'submit-button-blue':request_status==3}">{{stringa_bottone}}</button>
+                  <button type="submit" :class="{'submit-button-red':request_status==1,'submit-button-viola':request_status==2,'submit-button-green':request_status==2 ,'submit-button-blue':request_status==3}">{{stringa_bottone}}</button>
                 </form>
               </div>
             </div>
@@ -486,6 +486,13 @@ body {
   color: #952bbe;
   font-weight: 700;
 }
+.form-title2 {
+  align-items: center;
+  font-size: 2vw;
+  padding-top: 1vw;
+  color: #952bbe;
+  font-weight: 700;
+}
 
 .input-group {
   margin-bottom: 1vw;
@@ -805,6 +812,7 @@ body {
     color: #952bbe;
     font-weight: 700;
   }
+ 
 
   .input-group {
     margin-bottom: 1.5vh;
