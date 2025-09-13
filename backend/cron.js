@@ -1,7 +1,7 @@
 const cron= require('cron');
 
 const backendURL="https://storemacacos.onrender.com";
-const job= new cron.CronJob('*/14 * * * *',function(){
+const job= new cron.CronJob('*/14 0-2,7-23 * * *',function(){
     console.log('Restarting server');
 
     fetch(backendURL)
