@@ -46,7 +46,9 @@ router.post('/:username', async (req, res) => {
             await utente.save();
             return res.status(200).json({message:"aggiunto correttamente"}); 
         }else{
-            await Divisa.deleteOne({numero:utente.divisa.numero});
+            if(numero!=utente.divisa.numero){
+                await Divisa.deleteOne({numero:utente.divisa.numero});
+            }
             utente.divisa.taglia=taglia;
             utente.divisa.numero=numero;
             utente.edited=true;
