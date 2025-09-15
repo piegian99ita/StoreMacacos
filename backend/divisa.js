@@ -39,7 +39,7 @@ router.post('/:username', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        if(!utente.divisa.numero){
+        if(!utente.divisa){
            utente.divisa.taglia=taglia;
             utente.divisa.numero=numero;
             utente.edited=true;
