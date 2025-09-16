@@ -16,8 +16,8 @@ module.exports = mongoose.model('Utente', new Schema({
         colore:{type:String,required:true}
     }],
     divisa:{
-        taglia:{type:String, required:true},
-        numero:{type:String,required:true}
+        taglia:{type:String},
+        numero:{type:String}
     },
     edited:{type:Boolean,default:false},
 }));
