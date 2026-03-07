@@ -4,7 +4,6 @@ const Utente = require('./models/Utente'); // get our mongoose model
 const Felpa = require('./models/Felpa');
 const Tshirt = require('./models/Tshirt');
 
-let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
 
 
 router.get('/:username', async (req, res) => {
@@ -55,11 +54,7 @@ router.post('/:username/tshirt', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        if(macacos.includes(utente.username)){
-            utente.totale+=16.30;
-        }else{
-            utente.totale+=16.50;
-        }  
+        utente.totale+=17;
         utente.totale=utente.totale.toFixed(2);
         utente.tshirt.push({colore:colore,taglia:taglia});
         utente.edited=true;
@@ -100,11 +95,7 @@ router.post('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        if(macacos.includes(utente.username)){
-            utente.totale+=24.60;
-        }else{
-            utente.totale+=25;
-        }  
+        utente.totale+=25;
         utente.totale=utente.totale.toFixed(2);
         utente.felpa.push({colore:colore,taglia:taglia});
         utente.edited=true;
@@ -148,11 +139,7 @@ router.delete('/:username/tshirt', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        if(macacos.includes(utente.username)){
-            utente.totale-=16.30;
-        }else{
-            utente.totale-=16.50;
-        }  
+        utente.totale-=17;
         utente.totale=utente.totale.toFixed(2);
         let index = utente.tshirt.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {
@@ -199,11 +186,7 @@ router.delete('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        if(macacos.includes(utente.username)){
-            utente.totale-=24.60;
-        }else{
-            utente.totale-=25;
-        }  
+        utente.totale-25; 
         utente.totale=utente.totale.toFixed(2);
         let index = utente.felpa.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {

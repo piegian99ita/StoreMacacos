@@ -98,10 +98,9 @@ router.get('/:username/totale', async (req, res) => {
 router.post('/:username/totale', async (req, res) => {
     let username=req.params.username;
     const pass=req.body.pass;
-    const macaco=req.body.macaco;
     let totale=0;
-    let maglietta=16.30;
-    let felpa=24.60;
+    let maglietta=17;
+    let felpa=25;
     
 
     if(pass!=process.env.PASS){
@@ -117,10 +116,7 @@ router.post('/:username/totale', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     }
     else{
-        if(!macaco){
-            maglietta=16.50;
-            felpa=25;
-        }
+        
         totale+=(utente.tshirt.length)*maglietta+(utente.felpa.length)*felpa;
         totale = parseFloat(totale.toFixed(2));
 

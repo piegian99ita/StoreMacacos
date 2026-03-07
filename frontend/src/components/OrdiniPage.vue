@@ -11,7 +11,7 @@
         </router-link>
         <router-link to="/tshirt" class="nav-item">T-SHIRT</router-link>
         <router-link to="/felpe" class="nav-item">FELPE</router-link>
-        <router-link to="/divise" class="nav-item">DIVISE</router-link>
+        <!-- <router-link to="/divise" class="nav-item">DIVISE</router-link> -->
         <router-link to="/ordini" class="nav-item-underline">ORDINI</router-link>
       </div>
 
@@ -90,14 +90,10 @@ export default {
       this.$router.push('/');
     }else{
       if(!m_price){
-        let macacos=["pietro-giannini","tommaso-passerini","giacomo-serati","nicola-trotter","giordani-luca","lorenzo-fedrizzi","andrea-pizzinini","alessandro-chiste","damiano-osello","eugenio-tani","umberto-tani","gabriele-padovani","fabio-tessari","giacomo-valla","axel-barbieri","luca-giannini","pietro-mirandola"];
-        if(macacos.includes(username)){
-          localStorage.setItem('m_price', "16.30"); 
-          localStorage.setItem('f_price', "24.60"); 
-        }else{
-          localStorage.setItem('m_price', "16.50"); 
-          localStorage.setItem('f_price', "25"); 
-        }
+        
+        localStorage.setItem('m_price', "17"); 
+        localStorage.setItem('f_price', "25"); 
+        
       }
     }
   
@@ -407,7 +403,7 @@ html, body {
   font-size: 1vw;
 }
 .submit-button{
-  display:none;
+  /* display:none; */
   padding: 0.7vw 0.6vw; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 0.8vw; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
@@ -424,7 +420,7 @@ html, body {
 }
 
 .submit-button2{
-  display:none;
+  /* display:none; */
   padding: 0.7vw 0.6vw; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 0.8vw; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
@@ -678,7 +674,7 @@ html, body {
   font-size: 1.5vh;
 }
 .submit-button{
-  display:none;
+  /* display:none; */
   padding: 0.7vh 0.6vh; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 1.1vh; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;
@@ -695,7 +691,7 @@ html, body {
 }
 
 .submit-button2{
-  display:none;
+  /* display:none; */
   padding: 0.7vh 0.6vh; /* Aumenta il padding per rendere il bottone più grande */
   font-size: 1.1vh; /* Aumenta la dimensione del testo del bottone */
   font-family: 'Georgia', serif;

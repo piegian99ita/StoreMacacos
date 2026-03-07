@@ -19,7 +19,7 @@ async function connectDB() {
   }
 }
 
-async function aggiornaDocumenti() {
+async function aggiornaDocumenti2() {
   try {
     const users = await Utente.find({ totale: { $ne: 0 } });
 
@@ -48,3 +48,39 @@ async function exampleCall() {
 }
 
 exampleCall();
+
+async function aggiornaDocumenti() {
+  try {
+    // Cerchiamo tutti gli utenti che hanno il totale diverso da 0 
+    // o che hanno l'attributo edited a true
+    const query = { 
+      $or: [
+        { totale: { $ne: 0 } },
+        { edited: true }
+      ]
+    };
+
+    const update = {
+      $set: { 
+        totale: 0, 
+        edited: false,
+        tshirt: [], // Svuota l'array
+        felpa: []   // Svuota l'array
+      }
+    };
+
+    // Eseguiamo l'aggiornamento massivo
+    const result = await Utente.updateMany(query, update);
+
+    console.log(`Operazione completata!`);
+    console.log(`Documenti trovati: ${result.matchedCount}`);
+    console.log(`Documenti modificati effettivamente: ${result.modifiedCount}`);
+
+  } catch (error) {
+    console.error("Errore durante l'aggiornamento dei documenti:", error);
+  } finally {
+    // È buona norma chiudere la connessione alla fine di uno script stand-alone
+    await mongoose.connection.close();
+    console.log("Connessione chiusa.");
+  }
+}
