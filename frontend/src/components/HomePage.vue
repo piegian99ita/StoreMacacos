@@ -107,6 +107,11 @@ export default {
         localStorage.setItem('f_price', "25"); 
         
       }
+      else if(Number(m_price)<17){
+        localStorage.setItem('m_price', "17"); 
+        localStorage.setItem('f_price', "25"); 
+        
+      }
       console.log(this);
       this.startAutoSlide();
       console.log("errore dopo");
@@ -410,7 +415,8 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .app {
+
+ .app {
   font-family: Arial, sans-serif;
   font-size: 16px;
   overflow-x:hidden;
@@ -427,9 +433,9 @@ export default {
   height: 8vh;
   width: 100vw;
   display: flex;
-  justify-content: left;
-  align-items: left;
-  padding: 1vw;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5vw;
   z-index:1000;
   position:sticky;
   top:0;
@@ -439,14 +445,14 @@ export default {
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 2vh; /* Distanza tra i link */
+  gap: 2.8vh; /* Distanza tra i link */
 }
 
 
 .navbar-right {
   display: flex;
-  align-items: center;
-  
+  align-items: right;
+  justify-content: flex-end;
 }
 
 .log-out {
@@ -455,12 +461,14 @@ export default {
   background: radial-gradient(rgb(255, 0, 0),rgb(95, 5, 5));
   font-weight: 800;
   resize: none;
-  font-size: 1.7vw;
+  font-size: 100%;
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 4vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 100%; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
+  margin-left: auto;
+  
 }
 
 
@@ -469,7 +477,7 @@ export default {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 75%;
+  font-size: 2.5vh;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -480,7 +488,7 @@ export default {
   font-weight: 800;
   resize:none;
   text-decoration: underline;
-  font-size: 75%;
+  font-size: 2.5vh;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -488,18 +496,22 @@ export default {
 
 
 .logo {
-  width: 90%; /* Imposta la larghezza del logo */
-  height: 5vh; /* Mantieni le proporzioni dell'immagine */
+  width: 100%; /* Imposta la larghezza del logo */
+  height: 100%; /* Mantieni le proporzioni dell'immagine */
   width: auto;
-  padding-top: 1vh;
+  padding-top: 0;
   display: block; /* Rimuove lo spazio sotto l'immagine */
 }
-
+.input{
+  height:8vh;
+  width:20vw;
+}
 .home {
   text-align: center;
-  padding: 3vw 0vw;
+  padding: 2vh 0vw;
   font-weight: 500vh;
-  font-size: 2vh;
+  font-size: 2.5vh;
+  height:2vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
 }
@@ -509,13 +521,32 @@ export default {
 .nav-item1 {
   color: #9b59b6; /* Viola */
   font-family: 'Georgia', serif;
-  font-size: 1vw;
+  font-size: 2.5vw;
   background-color: black;
   border: #316104   0.1vw;
   border-radius: 2vh;
   filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
   padding: 0vh 0.5vh;
 }
+
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+    box-sizing: border-box;
+    overflow-x:hidden;
+  }
+
+  .app2 {
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
 
 
 

@@ -59,8 +59,13 @@ methods: {
     const m_price = localStorage.getItem('m_price');
 
     if (username) {
-      if (!m_price) {
+      if(!m_price){
         
+        localStorage.setItem('m_price', "17"); 
+        localStorage.setItem('f_price', "25"); 
+        
+      }
+      else if(Number(m_price)<17){
         localStorage.setItem('m_price', "17"); 
         localStorage.setItem('f_price', "25"); 
         

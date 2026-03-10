@@ -114,6 +114,11 @@ export default {
         localStorage.setItem('f_price', "25"); 
         
       }
+      else if(Number(m_price)<17){
+        localStorage.setItem('m_price', "17"); 
+        localStorage.setItem('f_price', "25"); 
+        
+      }
     }
   },
   
@@ -409,9 +414,7 @@ body {
   /* Assicura che lo pseudo-elemento stia dietro al contenuto */
 }
 
-
 @media (max-width: 768px) {
-
 
  .app {
   font-family: Arial, sans-serif;
@@ -430,9 +433,9 @@ body {
   height: 8vh;
   width: 100vw;
   display: flex;
-  justify-content: left;
-  align-items: left;
-  padding: 1vw;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5vw;
   z-index:1000;
   position:sticky;
   top:0;
@@ -442,14 +445,14 @@ body {
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 2vh; /* Distanza tra i link */
+  gap: 2.8vh; /* Distanza tra i link */
 }
 
 
 .navbar-right {
   display: flex;
-  align-items: center;
-  
+  align-items: right;
+  justify-content: flex-end;
 }
 
 .log-out {
@@ -458,12 +461,14 @@ body {
   background: radial-gradient(rgb(255, 0, 0),rgb(95, 5, 5));
   font-weight: 800;
   resize: none;
-  font-size: 1.7vw;
+  font-size: 100%;
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
-  margin-left: 4vw; /* Aggiunto margine per separare dal resto */
+  margin-left: 100%; /* Aggiunto margine per separare dal resto */
   border: 0.3vh solid black;
+  margin-left: auto;
+  
 }
 
 
@@ -472,7 +477,7 @@ body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 80%;
+  font-size: 2.5vh;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -483,7 +488,7 @@ body {
   font-weight: 800;
   resize:none;
   text-decoration: underline;
-  font-size: 80%;
+  font-size: 2.5vh;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -491,18 +496,22 @@ body {
 
 
 .logo {
-  width: 90%; /* Imposta la larghezza del logo */
-  height: 5vh; /* Mantieni le proporzioni dell'immagine */
+  width: 100%; /* Imposta la larghezza del logo */
+  height: 100%; /* Mantieni le proporzioni dell'immagine */
   width: auto;
-  padding-top: 1vh;
+  padding-top: 0;
   display: block; /* Rimuove lo spazio sotto l'immagine */
 }
-
+.input{
+  height:8vh;
+  width:20vw;
+}
 .home {
   text-align: center;
-  padding: 3vw 0vw;
+  padding: 2vh 0vw;
   font-weight: 500vh;
-  font-size: 2vh;
+  font-size: 2.5vh;
+  height:2vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
 }
@@ -512,20 +521,13 @@ body {
 .nav-item1 {
   color: #9b59b6; /* Viola */
   font-family: 'Georgia', serif;
-  font-size: 1vw;
+  font-size: 2.5vw;
   background-color: black;
   border: #316104   0.1vw;
   border-radius: 2vh;
   filter: drop-shadow(0.1px 0.1px 2px rgb(234, 149, 241));
   padding: 0vh 0.5vh;
 }
-
-
-
-
-
-  
-
 
   html,
   body {
@@ -557,80 +559,10 @@ body {
     width: inherit;
   }
 
-  .title {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    color: rgb(226, 233, 190);
-
-
-
-    padding-bottom: 1vh;
-    font-size: 5vh;
-    text-shadow: 1px 1px 2px white, 0 0 0.5rem rgb(185, 80, 80), 0 0 0.2rem black;
+  .form-title{
+    display:none;
   }
-
-
-
-
-
-
-  .input-group label {
-    display: block;
-    font-size: 2.5vh;
-    margin-bottom: 1vh;
-
-  }
-
-  /* Stili per i selettori */
-  .input-group select {
-    width: 60%;
-    text-align: center;
-    font-size: 2.5vh;
-    /* Aumenta la dimensione del testo del select */
-    padding: 1vh;
-    border: 0.1vh solid #316104;
-    border-radius: 0.5vh;
-
-  }
-
-  .form-container button {
-    /*display:none;*/
-    padding: 2vh 3vh;
-    /* Aumenta il padding per rendere il bottone più grande */
-    font-size: 3vh;
-    /* Aumenta la dimensione del testo del bottone */
-    font-family: 'Georgia', serif;
-    color: White;
-    background: radial-gradient(rgb(25, 5, 41), #42056e);
-    /* Colore viola */
-    border: GreenYellow;
-    border-radius: 1.5vh;
-    cursor: pointer;
-    margin-top: 8vh;
-    transition: background-color 0.3s;
-    margin-left: 30vw;
-  }
-
-  .form-container {
-    align-items: center;
-    font-size: 1vh;
-    padding-bottom: 1vh;
-  }
-
-  .form-title {
-    align-items: center;
-    font-size: 2.7vh;
-    padding-top: 2vh;
-    padding-bottom: 1vh;
-    color: #952bbe;
-    font-weight: 700;
-  }
-
-  .input-group {
-    margin-bottom: 1.5vh;
-    padding-top: 1.5vh;
-  }
-
+ 
 
 
   .background-container {
@@ -670,22 +602,85 @@ body {
     z-index: -1;
     /* Assicura che lo pseudo-elemento stia dietro al contenuto */
   }
-  .grid-row {
-  display: grid;
-  grid-template-columns: 55% 45%; /* Definisce due colonne */
-  /* Opzionale: allinea gli elementi al centro verticalmente */
-  align-items: left;
+.grid-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Sposta il contenitore dell'immagine in cima */
+.immagine-felpa {
+  order: -1; 
+  margin-bottom: 2vh;
+  margin-top: 4vh;
+}
+.felpa {
+  height: 30vh; /* Regola la grandezza su mobile */
+  width: auto;
+}
+  .form-container {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+
+.form-container form {
+  display: flex;
+  flex-direction: row; /* Affianca gli elementi */
+  flex-wrap: wrap;      /* Permette al bottone di andare a capo */
+  justify-content: center;
+  gap: 2vw;             /* Spazio tra i due selettori */
+}
+
+ .input-group {
+  flex: 1;              /* Fa sì che i due selettori si dividano lo spazio */
+  min-width: 140px;     /* Impedisce che diventino troppo stretti */
+  text-align: center;
+}
+
+.input-group select {
+    width: 90%;          /* Occupa quasi tutto lo spazio del suo gruppo */
+    padding: 1.5vh;      /* Aumenta l'altezza interna del tasto */
+    font-size: 2.2vh;    /* Rende il testo interno più grande */
+    border-radius: 1vh;  /* Arrotonda gli angoli per un look più moderno */
+    background-color: white; /* Assicura che sia leggibile */
+    border: 0.2vh solid #316104;
+    cursor: pointer;
+  }
+
+  /* Opzionale: aumenta anche la dimensione della Label sopra */
+  .input-group label {
+    font-size: 1.8vh;
+    font-weight: bold;
+    margin-bottom: 1vh;
+    display: block;
+  }
+
+.form-container button.submit-button {
+    /* 1. LARGHEZZA: Usa width o max-width */
+    width: 50% !important;   /* Qui decidi quanto deve essere largo (es. 70% dello schermo) */
+    flex-basis: auto;        /* Ripristina il valore per permettere alla width di funzionare */
+    
+    /* 2. ALTEZZA: Usa padding o height */
+    height: 8vh;             /* Altezza fissa */
+    /* padding: 2vh 0; */    /* In alternativa all'altezza fissa */
+    
+  box-shadow: 0 0.7vh 1vh rgb(66, 5, 110); /* Ombra scura sotto il tasto */
+  border: 0.2vh solid rgba(255, 255, 255, 0.3); /* Leggero riflesso sul bordo */
+
+    /* 3. CENTRAMENTO */
+    margin: 4vh auto !important; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 4. TESTO */
+    font-size: 3vh;
+    font-family: 'Georgia', serif;
+  }
 }
 
 
-.felpa{
-  height: 13vh;
-  width:auto;
-  margin-right: 20vh;
-}
 
 
-
-
-}
 </style>
