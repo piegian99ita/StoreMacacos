@@ -488,7 +488,7 @@ html, body {
 
 @media (max-width: 768px) {
    
- .app {
+.app {
   font-family: Arial, sans-serif;
   font-size: 16px;
   overflow-x:hidden;
@@ -533,7 +533,7 @@ html, body {
   background: radial-gradient(rgb(255, 0, 0),rgb(95, 5, 5));
   font-weight: 800;
   resize: none;
-  font-size: 100%;
+  font-size: 3vw;
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -549,7 +549,7 @@ html, body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 2.5vh;
+  font-size: 3vw;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -560,7 +560,7 @@ html, body {
   font-weight: 800;
   resize:none;
   text-decoration: underline;
-  font-size: 2.5vh;
+  font-size: 3vw;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -568,7 +568,7 @@ html, body {
 
 
 .logo {
-  width: 100%; /* Imposta la larghezza del logo */
+  width: 80%; /* Imposta la larghezza del logo */
   height: 100%; /* Mantieni le proporzioni dell'immagine */
   width: auto;
   padding-top: 0;
@@ -576,13 +576,13 @@ html, body {
 }
 .input{
   height:8vh;
-  width:20vw;
+  width:22vw;
 }
 .home {
   text-align: center;
-  padding: 2vh 0vw;
+  padding: 2.5vh 0vw;
   font-weight: 500vh;
-  font-size: 2.5vh;
+  font-size: 3vw;
   height:2vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;

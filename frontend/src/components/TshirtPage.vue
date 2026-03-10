@@ -24,8 +24,8 @@
     <div class="content">
       <div class="container">
         <div class="background-container">
-          <p class="title">T-SHIRT MACACOS ({{m_p}}€)</p>
-          <p class="title">Il prezzo potrebbe cambiare una volta contattati i fornitori</p>
+          <p class="title">T-SHIRT MACACOS ({{m_p}}€)<br>Il prezzo potrebbe cambiare una volta contattati i fornitori</p>
+          
           
 
           <div class="grid-row">
@@ -464,7 +464,7 @@ body {
   background: radial-gradient(rgb(255, 0, 0),rgb(95, 5, 5));
   font-weight: 800;
   resize: none;
-  font-size: 100%;
+  font-size: 3vw;
   padding: 0.8vh 1vw;
   border-radius: 2.5vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -480,7 +480,7 @@ body {
   color: #952bbe; 
   font-weight: 800;
   resize:none;
-  font-size: 2.5vh;
+  font-size: 3vw;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -491,7 +491,7 @@ body {
   font-weight: 800;
   resize:none;
   text-decoration: underline;
-  font-size: 2.5vh;
+  font-size: 3vw;
   padding:0vh 0vw;
   border-radius: 1vw;
   text-shadow: 0.2vw 0.2vw 0.2vw hsl(0, 0%, 0%);
@@ -499,7 +499,7 @@ body {
 
 
 .logo {
-  width: 100%; /* Imposta la larghezza del logo */
+  width: 80%; /* Imposta la larghezza del logo */
   height: 100%; /* Mantieni le proporzioni dell'immagine */
   width: auto;
   padding-top: 0;
@@ -507,13 +507,13 @@ body {
 }
 .input{
   height:8vh;
-  width:20vw;
+  width:22vw;
 }
 .home {
   text-align: center;
-  padding: 2vh 0vw;
+  padding: 2.5vh 0vw;
   font-weight: 500vh;
-  font-size: 2.5vh;
+  font-size: 3vw;
   height:2vh;
   color: rgb(196, 186, 186);
   text-shadow: 0.01vw 0.01vw 0.1vw rgb(255, 0, 0), 0 0 0.5vw rgb(25, 27, 146), 0 0 0.2vw blue;
@@ -565,6 +565,9 @@ body {
   .form-title{
     display:none;
   }
+  .title{
+    margin-top: 5vh;
+  }
  
 
 
@@ -609,6 +612,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2vh;
 }
 
 /* Sposta il contenitore dell'immagine in cima */
@@ -662,7 +666,7 @@ body {
 .form-container button.submit-button {
     /* 1. LARGHEZZA: Usa width o max-width */
     width: 50% !important;   /* Qui decidi quanto deve essere largo (es. 70% dello schermo) */
-    flex-basis: auto;        /* Ripristina il valore per permettere alla width di funzionare */
+    flex-basis: 70%;        /* Ripristina il valore per permettere alla width di funzionare */
     
     /* 2. ALTEZZA: Usa padding o height */
     height: 8vh;             /* Altezza fissa */
@@ -672,7 +676,7 @@ body {
   border: 0.2vh solid rgba(255, 255, 255, 0.3); /* Leggero riflesso sul bordo */
 
     /* 3. CENTRAMENTO */
-    margin: 4vh auto !important; 
+    margin: 7vh auto !important; 
     display: flex;
     align-items: center;
     justify-content: center;
