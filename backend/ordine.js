@@ -186,7 +186,7 @@ router.delete('/:username/felpa', async (req, res) => {
         return res.status(404).json({message:"user non trovato"});
     } 
     else{
-        utente.totale-25; 
+        utente.totale-=25; 
         utente.totale=utente.totale.toFixed(2);
         let index = utente.felpa.findIndex(item => item.colore === colore && item.taglia === taglia);
         if (index !== -1) {
