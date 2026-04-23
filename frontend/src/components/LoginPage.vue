@@ -61,13 +61,13 @@ methods: {
     if (username) {
       if(!m_price){
         
-        localStorage.setItem('m_price', "17"); 
-        localStorage.setItem('f_price', "25"); 
+        localStorage.setItem('m_price', "16.60"); 
+        localStorage.setItem('f_price', "25.20"); 
         
       }
-      else if(Number(m_price)<17){
-        localStorage.setItem('m_price', "17"); 
-        localStorage.setItem('f_price', "25"); 
+      else if(Number(m_price)>16.60){
+        localStorage.setItem('m_price', "16.60"); 
+        localStorage.setItem('f_price', "25.20"); 
         
       }
 
@@ -104,8 +104,8 @@ methods: {
         const username = data.username;
         console.log(username);
         localStorage.setItem('username', username); 
-        localStorage.setItem('m_price', "17"); 
-        localStorage.setItem('f_price', "25"); 
+        localStorage.setItem('m_price', "16.60"); 
+        localStorage.setItem('f_price', "25.20"); 
         
         this.$router.push({path: '/home' })
         

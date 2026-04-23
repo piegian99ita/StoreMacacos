@@ -91,13 +91,13 @@ export default {
     }else{
       if(!m_price){
         
-        localStorage.setItem('m_price', "17"); 
-        localStorage.setItem('f_price', "25"); 
+        localStorage.setItem('m_price', "16.60"); 
+        localStorage.setItem('f_price', "25.20"); 
         
       }
-      else if(Number(m_price)<17){
-        localStorage.setItem('m_price', "17"); 
-        localStorage.setItem('f_price', "25"); 
+      else if(Number(m_price)>16.60){
+        localStorage.setItem('m_price', "16.60"); 
+        localStorage.setItem('f_price', "25.20"); 
         
       }
     }
