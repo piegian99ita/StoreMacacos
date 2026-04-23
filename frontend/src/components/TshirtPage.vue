@@ -24,7 +24,7 @@
     <div class="content">
       <div class="container">
         <div class="background-container">
-          <p class="title">T-SHIRT MACACOS ({{m_p}}€)<br>Il prezzo potrebbe cambiare una volta contattati i fornitori</p>
+          <p class="title">T-SHIRT MACACOS ({{m_p}}€)</p>
           
           
 

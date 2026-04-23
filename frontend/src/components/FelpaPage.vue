@@ -26,7 +26,7 @@
 
       <div class="container">
         <div class="background-container">
-          <p class="title">FELPA MACACOS ({{f_p}}€)<br>Il prezzo potrebbe cambiare una volta contattati i fornitori</p>
+          <p class="title">FELPA MACACOS ({{f_p}}€)</p>
           <div class="grid-row">
             <div>
               <div class="form-container">
