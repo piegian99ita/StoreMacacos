@@ -62,10 +62,6 @@ router.post('/prezzo', async (req, res) => {
 
 router.post('/pagamento', async (req, res) => {
     try {
-        let macacos = ["pietro-giannini", "tommaso-passerini", "giacomo-serati", "nicola-trotter", 
-            "giordani-luca", "lorenzo-fedrizzi", "andrea-pizzinini", "alessandro-chiste",
-            "damiano-osello", "eugenio-tani", "umberto-tani", "gabriele-padovani", 
-            "fabio-tessari", "giacomo-valla", "axel-barbieri", "luca-giannini", "pietro-mirandola"];
         const users = await Utente.find({ totale: { $ne: 0 } });
 
         if (users.length === 0) {
@@ -73,30 +69,22 @@ router.post('/pagamento', async (req, res) => {
         }
 
         const emailPromises = users.map(async (user) => {
-            if(user.edited){
+            if(user.username=="pietro-giannini"){
 
-                let parti = user.username.split("-");
+            let parti = user.username.split("-");
             let nome = parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
             let cognome = parti.slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
             // Creazione elenco ordini in HTML
             let ordiniHTML = `<ul>`;
-            if(macacos.includes(user.username)){
-                user.tshirt.forEach(tshirt => {
-                    ordiniHTML += `<li><strong>T-Shirt</strong> - Taglia: <strong>${tshirt.taglia}</strong> - Colore: <strong>${tshirt.colore}</strong> - 16.30€</li>`;
-                });
-                user.felpa.forEach(felpa => {
-                    ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong> - 24.60€</li>`;
-                });
-
-            }else{
-                user.tshirt.forEach(tshirt => {
-                    ordiniHTML += `<li><strong>T-Shirt</strong> - Taglia: <strong>${tshirt.taglia}</strong> - Colore: <strong>${tshirt.colore}</strong> - 16.50€</li>`;
-                });
-                user.felpa.forEach(felpa => {
-                    ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong> - 25€</li>`;
-                });
-            }
+            
+            user.tshirt.forEach(tshirt => {
+                ordiniHTML += `<li><strong>T-Shirt</strong> - Taglia: <strong>${tshirt.taglia}</strong> - Colore: <strong>${tshirt.colore}</strong> - 16.60€</li>`;
+            });
+            user.felpa.forEach(felpa => {
+                ordiniHTML += `<li><strong>Felpa</strong> - Taglia: <strong>${felpa.taglia}</strong> - Colore: <strong>${felpa.colore}</strong> - 25.20€</li>`;
+            });
+        
             
             ordiniHTML += `</ul>`;
 
@@ -112,7 +100,7 @@ router.post('/pagamento', async (req, res) => {
                         Trovi di seguito il riepilogo del tuo ordine</p>
                         <h3>Dettaglio Ordine:</h3>
                         ${ordiniHTML}
-                        <p>E' possibile modificare l'ordine nel nostro sito entro il <strong>21/03</strong> (nel caso di modifiche è consigliato mandare una mail per notificare la modifica)</p>
+                        <p>Nel caso di modifiche all'ordine rispondimi a questa mail o contattami in privato.</p>
                         <p><a href="https://storemacacos.netlify.app" style="color: blue; font-weight: bold;">Visita il nostro store per modificare l'ordine</a></p>
                         <p>Accedendo con le seguenti credenziali:</p>
                         <ul>
@@ -122,15 +110,11 @@ router.post('/pagamento', async (req, res) => {
                         </ul>
 
                          <h3>ISTRUZIONI PAGAMENTO:</h3>
-                        <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> deve essere fatto entro il giorno <strong>25/03</strong> altrimenti verrà annullato l'ordine.<br>
-                        QUALUNQUE SIA IL METODO DI PAGAMENTO SCRIVETE UNA MAIL DI RISPOSTA O UN MESSAGGIO AL NOSTRO ACCOUNT INSTAGRAM PER NOTIFICARE L'AVVENUTO PAGAMENTO!<br>
-                        <strong>
-                        <span style="display: block; text-align: center;">!!! IMPORTANTE !!!</span><br>
-                        AFFINCHE'IL PAGAMENTO CON BONIFICO VENGA ACCETTATO LA CAUSALE DEVE ESSERE LA SEGUENTE:<br>
-                        Regalo Macaco's fine anno - nome cognome - mail</strong></p>
+                        <p>Il pagamento della somma totale di <strong>${user.totale.toFixed(2)}€ </strong> può essere fatto tramite Paypal o bonifico.<br>
+                        Qualunque sia il metodo di pagamento scrivetemi un messaggio in privato o rispondete a questa mail per notificare l'avvenuto pagamento!<br>
                         <h3>METODI DI PAGAMENTO:</h3>
                         <li>Bonifico al seguente indirizzo bancario: IBAN:<strong> IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
-                        <li>Pagamento su PayPal: <a href="https://PayPal.Me/wuolzordan" style="color: blue; font-weight: bold;">PAGA QUI</a></li>
+                        <li>Pagamento su PayPal: <a href="https://PayPal.Me/piegian99" style="color: blue; font-weight: bold;">PAGA QUI</a></li>
                         
 
                         <p>Grazie per aver ordinato il nostro merch,</p>

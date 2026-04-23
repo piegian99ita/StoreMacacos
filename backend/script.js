@@ -19,28 +19,7 @@ async function connectDB() {
   }
 }
 
-async function aggiornaDocumenti2() {
-  try {
-    const users = await Utente.find({ totale: { $ne: 0 } });
 
-    if (users.length === 0) {
-      console.log("Nessun utente trovato");
-      return;
-    }
-
-    const emailPromises = users.map(async (user) => {
-      if (user.edited) {
-        console.log(user.username);
-      }
-    });
-
-    await Promise.all(emailPromises);
-    console.log("Aggiornamento completato.");
-
-  } catch (error) {
-    console.error("Errore durante l'aggiornamento dei documenti:", error);
-  }
-}
 
 async function exampleCall() {
   await connectDB(); // Connect to the database first
@@ -60,21 +39,22 @@ async function aggiornaDocumenti() {
       ]
     };
 
-    const update = {
-      $set: { 
-        totale: 0, 
-        edited: false,
-        tshirt: [], // Svuota l'array
-        felpa: []   // Svuota l'array
-      }
-    };
-
     // Eseguiamo l'aggiornamento massivo
-    const result = await Utente.updateMany(query, update);
+    const result = await Utente.find(query);
+    const updatePromises = result.map(user => {
+  // Qui puoi usare i dati reali dell'utente
+    
+    const n_m = user.tshirt ? user.tshirt.length : 0;
+    const n_f = user.felpa ? user.felpa.length : 0;
 
-    console.log(`Operazione completata!`);
-    console.log(`Documenti trovati: ${result.matchedCount}`);
-    console.log(`Documenti modificati effettivamente: ${result.modifiedCount}`);
+    // 2. Calcolo del totale (prezzi unitari)
+    const nuovoTotale = (n_m * 16.60) + (n_f * 25.20);
+    
+    // Arrotondamento a 2 decimali per evitare errori floating point
+    user.totale = Math.round(nuovoTotale * 100) / 100;
+    return user.save(); // Salva il singolo documento
+  });
+  await Promise.all(updatePromises);
 
   } catch (error) {
     console.error("Errore durante l'aggiornamento dei documenti:", error);
