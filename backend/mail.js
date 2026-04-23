@@ -69,7 +69,7 @@ router.post('/pagamento', async (req, res) => {
         }
 
         const emailPromises = users.map(async (user) => {
-            if(user.username=="pietro-giannini"){
+            if(user.username!="night-owls"){
 
             let parti = user.username.split("-");
             let nome = parti[0].charAt(0).toUpperCase() + parti[0].slice(1);
@@ -115,7 +115,8 @@ router.post('/pagamento', async (req, res) => {
                         <h3>METODI DI PAGAMENTO:</h3>
                         <li>Bonifico al seguente indirizzo bancario: IBAN:<strong> IT15O0830401810000010385684</strong> INTESTATARIO: <strong>GIANNINI PIETRO</strong></li>
                         <li>Pagamento su PayPal: <a href="https://PayPal.Me/piegian99" style="color: blue; font-weight: bold;">PAGA QUI</a></li>
-                        
+
+                        <p>PS: Se non sei un Macacos ovviamente non facciamo spedizioni per cui dovrai affidarti alla buona e vecchia consegna a mano di un Macaco.</p>                        
 
                         <p>Grazie per aver ordinato il nostro merch,</p>
                         <p><strong>Macaco's Basket team</strong></p>
